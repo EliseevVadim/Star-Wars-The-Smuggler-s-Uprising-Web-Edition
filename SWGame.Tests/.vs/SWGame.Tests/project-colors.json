@@ -1,0 +1,21 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "c27da7d1-a9e2-468e-a1e8-b70c404d911a": {
+      "ProjectGuid": "c27da7d1-a9e2-468e-a1e8-b70c404d911a",
+      "DisplayName": "SWGame.Tests",
+      "ColorIndex": 0
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    },
+    "175e7441-cbb3-4a4e-8f12-8e2f781c96d2": {
+      "ProjectGuid": "175e7441-cbb3-4a4e-8f12-8e2f781c96d2",
+      "DisplayName": "SWGame.Tests",
+      "ColorIndex": 1
+    }
+  },
+  "NextColorIndex": 2
+}
