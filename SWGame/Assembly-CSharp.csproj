@@ -136,6 +136,7 @@
     <Compile Include="Assets\Scripts\View\Presenters\NeighbourPlayersVisualizator.cs" />
     <Compile Include="Assets\Scripts\View\Presenters\NeighbourPlayerPresenter.cs" />
     <Compile Include="Assets\Scripts\View\Presenters\InventoryVisualizator.cs" />
+    <Compile Include="Assets\Scripts\View\ActionsHandlers\KeyResponsiveInputField.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
