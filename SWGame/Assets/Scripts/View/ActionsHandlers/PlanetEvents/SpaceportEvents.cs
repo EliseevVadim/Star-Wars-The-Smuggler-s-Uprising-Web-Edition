@@ -26,6 +26,7 @@ namespace SWGame.View.ActionsHandlers.PlanetEvents
         private Planet _korriban;
         private Planet _tatooine;
         private Planet _narShaddaa;
+        private Planet _coruscant;
         private Planet _selectedPlanet;
 
         private PlanetsRepository _planetsRepository;
@@ -40,6 +41,7 @@ namespace SWGame.View.ActionsHandlers.PlanetEvents
             _korriban = _planetsRepository.Planets[2];
             _tatooine = _planetsRepository.Planets[3];
             _narShaddaa = _planetsRepository.Planets[4];
+            _coruscant = _planetsRepository.Planets[5];
             _clientManager = GetComponentInParent<MainScene>().ClientManager;
         }
         public void SelectHutta()
@@ -67,6 +69,13 @@ namespace SWGame.View.ActionsHandlers.PlanetEvents
             _selectedPlanet = _narShaddaa;
             PreparePlanetInformationView();
         }
+
+        public void SelectCoruscant()
+        {
+            _selectedPlanet = _coruscant;
+            PreparePlanetInformationView();
+        }
+
         public async void Travell()
         {
             if (_planetsRepository.Planets.IndexOf(_selectedPlanet) == _player.GetPlanetIndex())
@@ -92,7 +101,6 @@ namespace SWGame.View.ActionsHandlers.PlanetEvents
                 _planetInformation.SetActive(false);
                 _player.Planet.View.SetActive(true);
                 _player.Location.View.SetActive(true);
-                //PlayerInformationVisualisator.UpdateView();
             }
         }
         public void CancelDeparture()
