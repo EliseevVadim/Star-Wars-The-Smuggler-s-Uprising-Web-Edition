@@ -12,6 +12,7 @@ using SWGame.Management.Repositories;
 using SWGame.View.Presenters;
 using Newtonsoft.Json;
 using SWGame.ViewModels;
+using SWGame.Activities.PazaakTools;
 
 namespace SWGame.View.Scenes
 {
@@ -27,11 +28,14 @@ namespace SWGame.View.Scenes
         [SerializeField] private GameObject _getAmountMessage;
         [SerializeField] private GameObject _tutorial;
         [SerializeField] private NeighbourPlayersVisualizator _playersArea;
+        [SerializeField] private PazaakChallengesVisualizator _challengesArea;
         [SerializeField] private ChatVisualizator _chatArea;
         [SerializeField] private SelectedPlayerPresenter _playerPresenter;
         [SerializeField] private GameObject _exitConfirmation;
         [SerializeField] private GameObject _shop;
         [SerializeField] private InputField _messageField;
+        [SerializeField] private GameObject _errorMessage;
+        [SerializeField] private Text _errorText;
 
         private Player _currentPlayer;
         private ClientManager _clientManager;
@@ -123,7 +127,7 @@ namespace SWGame.View.Scenes
             }
             if (Input.GetKeyDown(KeyCode.C))
             {
-                
+                GetInfoAboutCurrentPlayer();
             }
         }
 
@@ -164,6 +168,14 @@ namespace SWGame.View.Scenes
             _messagesDispatcher.AddMessage(new Action(() =>
             {
                 _chatArea.Render(chat);
+            }));
+        }
+
+        public void RedrawChallengesArea(List<PazaakChallenge> challenges)
+        {
+            _messagesDispatcher.AddMessage(new Action(() =>
+            {
+                _challengesArea.Render(challenges);
             }));
         }
 
@@ -219,6 +231,15 @@ namespace SWGame.View.Scenes
             {
                 _lackOfCardsMessage.SetActive(true);
             }
+        }
+
+        public void DisplayChallengeCreationError()
+        {
+            _messagesDispatcher.AddMessage(new Action(() =>
+            {
+                _errorText.text = "Невозможно создать больше одной игры";
+                _errorMessage.SetActive(true);
+            }));
         }
     }
 }

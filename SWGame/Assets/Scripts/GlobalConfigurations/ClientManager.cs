@@ -15,6 +15,7 @@ using SWGame.Management.ItemCellsCreators;
 using SWGame.Entities.Items.Cards;
 using SWGame.Management.Repositories;
 using SWGame.Entities.Items;
+using SWGame.Activities.PazaakTools;
 
 namespace SWGame.GlobalConfigurations
 {
@@ -167,6 +168,14 @@ namespace SWGame.GlobalConfigurations
             {
                 _mainScene.RedrawChatPanel(chat);
             });
+            _hubConnection.On<List<PazaakChallenge>>("RedrawChallengesPanel", (challenges) =>
+            {
+                _mainScene.RedrawChallengesArea(challenges);
+            });
+            _hubConnection.On("DisplayChallengeCreationError", () =>
+            {
+                _mainScene.DisplayChallengeCreationError();
+            });
             try
             {
                 await _hubConnection.StartAsync();
@@ -261,6 +270,11 @@ namespace SWGame.GlobalConfigurations
             await _hubConnection.InvokeAsync("GetPlayersInfo", playersId);
         }
 
+        public async Task AddPlayerToChallengesViewers()
+        {
+            await _hubConnection.InvokeAsync("AddPlayerToChallengesViewers");
+        }
+
         public async Task LoadInventoryItems(int inventoryId)
         {
             await _hubConnection.InvokeAsync("LoadInventoryItems", inventoryId);
@@ -314,6 +328,16 @@ namespace SWGame.GlobalConfigurations
         public async Task SendMessage(ChatMessage message)
         {
             await _hubConnection.InvokeAsync("SendMessage", message);
+        }
+
+        public async Task CreatePazaakChallenge(string creator, int amount)
+        {
+            await _hubConnection.InvokeAsync("CreatePazaakChallenge", creator, amount);
+        }
+
+        public async Task RemoveChallenge()
+        {
+            await _hubConnection.InvokeAsync("RemovePazaakChallenge");
         }
     }
 }

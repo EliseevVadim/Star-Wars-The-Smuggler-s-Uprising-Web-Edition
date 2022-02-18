@@ -10,6 +10,7 @@ using SWGame.Core.Management;
 using SWGame.Core.ViewModels;
 using SWGame.Core.Models.Items.Cards;
 using SWGame.Core.Models.Items;
+using SWGame.Core.Exceptions;
 
 namespace SWGame.Core.Hubs
 {
@@ -17,6 +18,7 @@ namespace SWGame.Core.Hubs
     {
         private readonly LocationsRepository _locationsRepository;
         private Dictionary<int, string> _locationsNames;
+        private string _viewersGroupName = "ChallengesViewers";
 
         public GameHub(LocationsRepository locationsRepository)
         {
@@ -45,6 +47,8 @@ namespace SWGame.Core.Hubs
             Player player = repository.LoadById(id);
             await player.UpdateLogoutDateTime();
             OnlineUsers.RemoveUserByConnectionId(Context.ConnectionId);
+            await RemovePazaakChallenge();
+            await Groups.RemoveFromGroupAsync(Context.ConnectionId, _viewersGroupName);
             await GetNeighbours(player.LocationId);
             await base.OnDisconnectedAsync(exception);
         }
@@ -222,6 +226,36 @@ namespace SWGame.Core.Hubs
             IRepository<Chat> repository = new ChatRepository();
             Chat response = repository.LoadById(locationId);
             await Clients.Caller.SendAsync("RedrawChat", response);
+        }
+
+        public async Task AddPlayerToChallengesViewers()
+        {
+            await Groups.AddToGroupAsync(Context.ConnectionId, _viewersGroupName);
+            await Clients.Caller.SendAsync("RedrawChallengesPanel", ActivePazaakChallenges.PazaakChallenges);
+        }
+
+        public async Task RemovePlayerFromChallengesViewers()
+        {
+            await Groups.RemoveFromGroupAsync(Context.ConnectionId, _viewersGroupName);
+        }
+
+        public async Task CreatePazaakChallenge(string creator, int amount)
+        {
+            try
+            {
+                ActivePazaakChallenges.AddChallenge(creator, amount, Context.ConnectionId);
+                await Clients.Group(_viewersGroupName).SendAsync("RedrawChallengesPanel", ActivePazaakChallenges.PazaakChallenges);
+            }
+            catch(ChallengeAlreadyExistException)
+            {
+                await Clients.Caller.SendAsync("DisplayChallengeCreationError");
+            }
+        }
+
+        public async Task RemovePazaakChallenge()
+        {
+            ActivePazaakChallenges.RemoveChallengeByConnectionId(Context.ConnectionId);
+            await Clients.Group(_viewersGroupName).SendAsync("RedrawChallengesPanel", ActivePazaakChallenges.PazaakChallenges);
         }
     }
 }

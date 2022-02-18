@@ -3502,7 +3502,7 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 5
     m_Bottom: 0
-  m_ChildAlignment: 0
+  m_ChildAlignment: 1
   m_Spacing: 5
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
@@ -8082,11 +8082,14 @@ MonoBehaviour:
   _getAmountMessage: {fileID: 414941048}
   _tutorial: {fileID: 1608666026}
   _playersArea: {fileID: 298350767}
+  _challengesArea: {fileID: 1727689957}
   _chatArea: {fileID: 429653073}
   _playerPresenter: {fileID: 1603387178}
   _exitConfirmation: {fileID: 1475881694}
   _shop: {fileID: 434557200}
   _messageField: {fileID: 1477901657}
+  _errorMessage: {fileID: 774566756}
+  _errorText: {fileID: 115738521}
 --- !u!114 &306816707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14712,7 +14715,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 526127957}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1727689956}
+        m_TargetAssemblyTypeName: SWGame.Activities.PazaakTools.PazaakChallengesManager,
+          Assembly-CSharp
+        m_MethodName: CreateChallenge
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &526127957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49940,6 +49956,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1727689955}
+  - component: {fileID: 1727689957}
+  - component: {fileID: 1727689956}
   m_Layer: 5
   m_Name: ActivePazaakChallenges
   m_TagString: Untagged
@@ -49968,6 +49986,36 @@ RectTransform:
   m_AnchoredPosition: {x: -137.15, y: 148.10222}
   m_SizeDelta: {x: 250, y: 174.3107}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1727689956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1727689954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eafbbe3adad19be4a8801992509b9314, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _amountField: {fileID: 907809847}
+  _errorMessage: {fileID: 774566756}
+  _errorText: {fileID: 115738521}
+  _creatingChallengeForm: {fileID: 836686372}
+--- !u!114 &1727689957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1727689954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2341e26ed4bac1149b06cc7820e7a2c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _container: {fileID: 130408680}
+  _challengeTemplate: {fileID: 3801384151240030764, guid: 76c163fb11b5efa48b4f4a01197faa07, type: 3}
 --- !u!1 &1728944757
 GameObject:
   m_ObjectHideFlags: 0

@@ -102,6 +102,7 @@
     <Compile Include="Assets\Scripts\Management\Validators\NicknameValidator.cs" />
     <Compile Include="Assets\Scripts\View\ActionsHandlers\CardsActionsHandler.cs" />
     <Compile Include="Assets\Scripts\View\Presenters\TutorialPresenter.cs" />
+    <Compile Include="Assets\Scripts\View\ActionsHandlers\KeyResponsiveInputField.cs" />
     <Compile Include="Assets\Scripts\Management\TutorialDataHandler.cs" />
     <Compile Include="Assets\Scripts\Activities\ExchangePoint.cs" />
     <Compile Include="Assets\Scripts\Exceptions\ValidationExceptions\WrongLoginException.cs" />
@@ -136,7 +137,10 @@
     <Compile Include="Assets\Scripts\View\Presenters\NeighbourPlayersVisualizator.cs" />
     <Compile Include="Assets\Scripts\View\Presenters\NeighbourPlayerPresenter.cs" />
     <Compile Include="Assets\Scripts\View\Presenters\InventoryVisualizator.cs" />
-    <Compile Include="Assets\Scripts\View\ActionsHandlers\KeyResponsiveInputField.cs" />
+    <Compile Include="Assets\Scripts\Activities\PazaakTools\PazaakChallengesManager.cs" />
+    <Compile Include="Assets\Scripts\Activities\PazaakTools\PazaakChallenge.cs" />
+    <Compile Include="Assets\Scripts\View\Presenters\PazaakChallengesVisualizator.cs" />
+    <Compile Include="Assets\Scripts\View\Presenters\PazaakChallengePresenter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
