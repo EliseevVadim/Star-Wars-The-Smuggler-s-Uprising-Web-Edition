@@ -77,6 +77,7 @@
     <Compile Include="Assets\Scripts\ViewModels\PlayerViewModel.cs" />
     <Compile Include="Assets\Scripts\View\Presenters\CurrentPlayerInfoPresenter.cs" />
     <Compile Include="Assets\Scripts\Entities\Items\LootItem.cs" />
+    <Compile Include="Assets\Scripts\View\Presenters\PazaakChallengePresenter.cs" />
     <Compile Include="Assets\Scripts\View\Presenters\InventoryCellPresenter.cs" />
     <Compile Include="Assets\Scripts\View\ActionsHandlers\MessageDragActionsHandler.cs" />
     <Compile Include="Assets\Scripts\Activities\PazaakTools\PazaakAmountGetter.cs" />
@@ -131,16 +132,15 @@
     <Compile Include="Assets\Scripts\GlobalConfigurations\Settings.cs" />
     <Compile Include="Assets\Scripts\Exceptions\ValidationExceptions\WrongNicknameException.cs" />
     <Compile Include="Assets\Scripts\Entities\Items\Item.cs" />
+    <Compile Include="Assets\Scripts\View\Presenters\PazaakChallengesVisualizator.cs" />
     <Compile Include="Assets\Scripts\Exceptions\ValidationExceptions\WrongPasswordException.cs" />
     <Compile Include="Assets\Scripts\View\ActionsHandlers\PlanetEvents\NarShaddaaEvents.cs" />
     <Compile Include="Assets\Scripts\Management\Validators\RegistrationValidator.cs" />
     <Compile Include="Assets\Scripts\View\Presenters\NeighbourPlayersVisualizator.cs" />
     <Compile Include="Assets\Scripts\View\Presenters\NeighbourPlayerPresenter.cs" />
     <Compile Include="Assets\Scripts\View\Presenters\InventoryVisualizator.cs" />
-    <Compile Include="Assets\Scripts\Activities\PazaakTools\PazaakChallengesManager.cs" />
-    <Compile Include="Assets\Scripts\Activities\PazaakTools\PazaakChallenge.cs" />
-    <Compile Include="Assets\Scripts\View\Presenters\PazaakChallengesVisualizator.cs" />
-    <Compile Include="Assets\Scripts\View\Presenters\PazaakChallengePresenter.cs" />
+    <Compile Include="Assets\Scripts\Activities\PazaakTools\OnlinePazaak\PazaakChallenge.cs" />
+    <Compile Include="Assets\Scripts\Activities\PazaakTools\OnlinePazaak\PazaakChallengesManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

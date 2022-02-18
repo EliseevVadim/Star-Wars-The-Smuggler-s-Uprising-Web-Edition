@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SWGame.Activities.PazaakTools
+namespace SWGame.Activities.PazaakTools.OnlinePazaak
 {
     public class PazaakChallenge
     {

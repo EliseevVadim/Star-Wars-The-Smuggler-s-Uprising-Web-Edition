@@ -1,4 +1,4 @@
-﻿using SWGame.Activities.PazaakTools;
+﻿using SWGame.Activities.PazaakTools.OnlinePazaak;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -15,7 +15,7 @@ using SWGame.Management.ItemCellsCreators;
 using SWGame.Entities.Items.Cards;
 using SWGame.Management.Repositories;
 using SWGame.Entities.Items;
-using SWGame.Activities.PazaakTools;
+using SWGame.Activities.PazaakTools.OnlinePazaak;
 
 namespace SWGame.GlobalConfigurations
 {

@@ -12,7 +12,7 @@ using SWGame.Management.Repositories;
 using SWGame.View.Presenters;
 using Newtonsoft.Json;
 using SWGame.ViewModels;
-using SWGame.Activities.PazaakTools;
+using SWGame.Activities.PazaakTools.OnlinePazaak;
 
 namespace SWGame.View.Scenes
 {

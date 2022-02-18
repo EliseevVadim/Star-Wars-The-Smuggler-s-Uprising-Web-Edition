@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using SWGame.Management;
 using SWGame.Entities;
 
-namespace SWGame.Activities.PazaakTools
+namespace SWGame.Activities.PazaakTools.OnlinePazaak
 {
     public class PazaakChallengesManager : MonoBehaviour
     {
