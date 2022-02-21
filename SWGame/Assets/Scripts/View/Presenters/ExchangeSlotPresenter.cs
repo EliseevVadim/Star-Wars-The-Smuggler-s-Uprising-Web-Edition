@@ -50,7 +50,6 @@ namespace SWGame.View.Presenters
                     _currentPlayer.WisdomPoints += _item.WisdomValue;
                     _successText.text = $"Получено {_item.WisdomValue} очков мудрости.";
                 }
-                //PlayerInformationVisualisator.UpdateView();
                 _successMessage.SetActive(true);
             }
             else

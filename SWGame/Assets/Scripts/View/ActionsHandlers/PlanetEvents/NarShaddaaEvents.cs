@@ -37,14 +37,12 @@ namespace SWGame.View.ActionsHandlers.PlanetEvents
             _currentPlayer.LocationId = _currentPlanet.Locations[1].Id;
             _currentPlanet.Locations[0].View.SetActive(false);
             _currentPlanet.Locations[1].View.SetActive(true);
-            //PlayerInformationVisualisator.UpdateView();
         }
         public void ReturnToUpperLevels()
         {
             _currentPlayer.LocationId = _currentPlanet.Locations[0].Id;
             _currentPlanet.Locations[1].View.SetActive(false);
             _currentPlanet.Locations[0].View.SetActive(true);
-            //PlayerInformationVisualisator.UpdateView();
         }
         public void CancelBounty()
         {
@@ -63,7 +61,6 @@ namespace SWGame.View.ActionsHandlers.PlanetEvents
             {
                 _currentPlayer.Credits -= RequiredCredits;
                 _currentPlayer.StoryFinished = true;
-                //PlayerInformationVisualisator.UpdateView();
                 _successMessage.SetActive(true);
             }
         }
@@ -101,7 +98,6 @@ namespace SWGame.View.ActionsHandlers.PlanetEvents
                         _currentPlayer.Credits += amount;
                     }
                     _resultCasinoMessage.SetActive(true);
-                    //PlayerInformationVisualisator.UpdateView();
                 }
             }
             catch

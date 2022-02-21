@@ -53,14 +53,12 @@ namespace SWGame.View.ActionsHandlers.PlanetEvents
             _currentPlayer.LocationId = _currentPlanet.Locations[1].Id;
             _currentPlanet.Locations[0].View.SetActive(false);
             _currentPlanet.Locations[1].View.SetActive(true);
-            //PlayerInformationVisualisator.UpdateView();
         }
         public void ReturnToAcademyEntrance()
         {
             _currentPlayer.LocationId = _currentPlanet.Locations[0].Id;
             _currentPlanet.Locations[1].View.SetActive(false);
             _currentPlanet.Locations[0].View.SetActive(true);
-            //PlayerInformationVisualisator.UpdateView();
         }
         public void GoToAcademy()
         {
@@ -69,7 +67,6 @@ namespace SWGame.View.ActionsHandlers.PlanetEvents
                 _currentPlayer.LocationId = _currentPlanet.Locations[2].Id;
                 _currentPlanet.Locations[0].View.SetActive(false);
                 _currentPlanet.Locations[2].View.SetActive(true);
-                //PlayerInformationVisualisator.UpdateView();
                 StartCoroutine(AcolytesAttack());
             }
             else
@@ -82,7 +79,6 @@ namespace SWGame.View.ActionsHandlers.PlanetEvents
             _currentPlayer.LocationId = _currentPlanet.Locations[0].Id;
             _currentPlanet.Locations[2].View.SetActive(false);
             _currentPlanet.Locations[0].View.SetActive(true);
-            //PlayerInformationVisualisator.UpdateView();
             StopAllCoroutines();
         }
         public void AskForProtection()
@@ -106,7 +102,6 @@ namespace SWGame.View.ActionsHandlers.PlanetEvents
             {
                 _currentPlayer.StoryFinished = true;
                 _successMessage.SetActive(true);
-                //PlayerInformationVisualisator.UpdateView();
             }
         }
         IEnumerator AcolytesAttack()
