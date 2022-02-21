@@ -129,6 +129,19 @@ namespace SWGame.Core.Models
             }
         }
 
+        public async Task SaveNewStoryFinishing()
+        {
+            using (MySqlConnection connection = new MySqlConnection(DatabaseInformation.ConnectionString))
+            {
+                connection.Open();
+                string query = string.Format(@"UPDATE Player SET StoryFinished = @storyFinished WHERE id = @id");
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@id", _id);
+                command.Parameters.AddWithValue("@storyFinished", _storyFinished);
+                await command.ExecuteNonQueryAsync();
+            }
+        }
+
         public async Task SaveNewPrestigeScore()
         {
             using (MySqlConnection connection = new MySqlConnection(DatabaseInformation.ConnectionString))

@@ -130,6 +130,12 @@ namespace SWGame.Core.Hubs
             await player.SaveNewTutorialDisplayment();
         }
 
+        public async Task UpdateStoryFinishing(string data)
+        {
+            Player player = JsonConvert.DeserializeObject<Player>(data);
+            await player.SaveNewStoryFinishing();
+        }
+
         public async Task UpdatePrestige(string data)
         {
             Player player = JsonConvert.DeserializeObject<Player>(data);

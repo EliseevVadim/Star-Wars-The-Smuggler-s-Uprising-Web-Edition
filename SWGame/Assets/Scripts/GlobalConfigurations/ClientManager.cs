@@ -263,6 +263,12 @@ namespace SWGame.GlobalConfigurations
             await _hubConnection.InvokeAsync("UpdateTutorialDisplayment", data);
         }
 
+        public async Task UpdateStoryFinishing(Player player)
+        {
+            string data = JsonConvert.SerializeObject(player);
+            await _hubConnection.InvokeAsync("UpdateStoryFinishing", data);
+        }
+
         public async Task UpdatePlayersPrestige(Player player)
         {
             string data = JsonConvert.SerializeObject(player);

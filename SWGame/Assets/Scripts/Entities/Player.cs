@@ -109,7 +109,15 @@ namespace SWGame.Entities
                 UpdateLocation(oldLocationId);
             }
         }
-        public bool StoryFinished { get => _storyFinished; set => _storyFinished = value; }
+        public bool StoryFinished 
+        { 
+            get => _storyFinished; 
+            set
+            {
+                _storyFinished = value;
+                UpdateStoryFinishing();
+            }
+        }
         public bool NeedToShowTutorial 
         { 
             get => _needToShowTutorial; 
@@ -165,6 +173,11 @@ namespace SWGame.Entities
             {
 
             }
+        }
+
+        private async void UpdateStoryFinishing()
+        {
+            await _clientManager.UpdateStoryFinishing(this);
         }
 
         private async void UpdatePrestige()
