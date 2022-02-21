@@ -23,6 +23,7 @@ namespace SWGame.Core
             services.AddTransient<LocationsRepository>();
             services.AddSignalR(options =>
             {
+                options.ClientTimeoutInterval = TimeSpan.FromMinutes(5);
                 options.KeepAliveInterval = TimeSpan.FromSeconds(1);
                 options.EnableDetailedErrors = true;
             });

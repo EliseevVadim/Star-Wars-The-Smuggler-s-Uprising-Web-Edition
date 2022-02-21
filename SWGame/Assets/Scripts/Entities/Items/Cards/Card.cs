@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using Newtonsoft.Json;
+using SWGame.View.Scenes;
 using SWGame.Activities.PazaakTools;
 
 namespace SWGame.Entities.Items.Cards
@@ -42,6 +43,28 @@ namespace SWGame.Entities.Items.Cards
             }
             catch { }
         }
+
+        public virtual void AddServerCardToDeck(Deck deck, MessagesDispatcher dispatcher)
+        {
+            try
+            {
+                dispatcher.AddMessage(new Action(() =>
+                {
+                    int index = deck.CurrentIndex;
+                    deck.Cards[index] = this;
+                    deck.DeckView[index].sprite = _image;
+                    deck.DeckView[index].color = Color.white;
+                    deck.CardsValues[index].text = _valueInLine;
+                    deck.Sum += _value;
+                    deck.CurrentIndex++;
+                }));
+            }
+            catch(Exception ex)
+            {
+                Debug.LogException(ex);
+            }
+        }
+
         public virtual void GenerateLineFromValue()
         {
             _valueInLine = _value.ToString();

@@ -11,6 +11,7 @@ using SWGame.Core.ViewModels;
 using SWGame.Core.Models.Items.Cards;
 using SWGame.Core.Models.Items;
 using SWGame.Core.Exceptions;
+using SWGame.Core.Services;
 
 namespace SWGame.Core.Hubs
 {
@@ -19,7 +20,7 @@ namespace SWGame.Core.Hubs
         private readonly LocationsRepository _locationsRepository;
         private Dictionary<int, string> _locationsNames;
         private string _viewersGroupName = "ChallengesViewers";
-
+        
         public GameHub(LocationsRepository locationsRepository)
         {
             _locationsRepository = locationsRepository;
@@ -45,8 +46,17 @@ namespace SWGame.Core.Hubs
             int id = OnlineUsers.GetUserIdByConnectionId(Context.ConnectionId);
             IRepository<Player> repository = new PlayersRepository();
             Player player = repository.LoadById(id);
-            await player.UpdateLogoutDateTime();
+            if (player != null)
+            {
+                await player.UpdateLogoutDateTime();
+            }
             OnlineUsers.RemoveUserByConnectionId(Context.ConnectionId);
+            string groupName = PlayingPazaakChallenges.GetChallengeNameByConnectionId(Context.ConnectionId);
+            if (groupName != null)
+            {
+                await Clients.OthersInGroup(groupName).SendAsync("ProcessOpponentDisconnection");
+                PlayingPazaakChallenges.RemoveChallengeByGroupName(groupName);
+            }
             await RemovePazaakChallenge();
             await Groups.RemoveFromGroupAsync(Context.ConnectionId, _viewersGroupName);
             await GetNeighbours(player.LocationId);
@@ -255,7 +265,64 @@ namespace SWGame.Core.Hubs
         public async Task RemovePazaakChallenge()
         {
             ActivePazaakChallenges.RemoveChallengeByConnectionId(Context.ConnectionId);
+            List<PazaakChallenge> test = ActivePazaakChallenges.PazaakChallenges;
             await Clients.Group(_viewersGroupName).SendAsync("RedrawChallengesPanel", ActivePazaakChallenges.PazaakChallenges);
+        }
+
+        public async Task AcceptChallenge(string acceptor, string creator)
+        {
+            PazaakChallenge challenge = ActivePazaakChallenges.PazaakChallenges.Where(challenge => challenge.Creator == creator).FirstOrDefault();
+            if (challenge != null)
+            {
+                await Groups.AddToGroupAsync(Context.ConnectionId, challenge.Name);
+                string creatorsId = ActivePazaakChallenges.GetConnectionIdByCreatorsName(creator);
+                await Groups.AddToGroupAsync(creatorsId, challenge.Name);
+                ChallengeIdentitiesModel game = new ChallengeIdentitiesModel()
+                {
+                    ChallengeName = challenge.Name,
+                    PlayersIds = new List<string> { creatorsId, Context.ConnectionId }
+                };
+                PlayingPazaakChallenges.AddGame(game);
+                Random random = new Random();
+                bool playerMovesFirst = random.Next(0, 2) == 1;
+                await Clients.Caller.SendAsync("StartOnlinePazaakGame", challenge, playerMovesFirst);
+                PazaakChallenge secondVariant = new PazaakChallenge()
+                {
+                    Creator = acceptor,
+                    Amount = challenge.Amount,
+                    Name = challenge.Name
+                };
+                await Clients.OthersInGroup(challenge.Name).SendAsync("StartOnlinePazaakGame", secondVariant, !playerMovesFirst);
+                ActivePazaakChallenges.RemoveChallengeByConnectionId(creatorsId);
+                await Clients.Group(_viewersGroupName).SendAsync("RedrawChallengesPanel", ActivePazaakChallenges.PazaakChallenges);
+            }
+        }
+
+        public async Task SendCardAddition(string request)
+        {
+            string groupName = PlayingPazaakChallenges.GetChallengeNameByConnectionId(Context.ConnectionId);
+            PazaakCardsCreator creator = new PazaakCardsCreator(request);
+            Card addition = creator.CreateCard();
+            string response = JsonConvert.SerializeObject(addition);
+            await Clients.OthersInGroup(groupName).SendAsync("ProcessCard", response);
+        }
+
+        public async Task SendMoveFinishing()
+        {
+            string groupName = PlayingPazaakChallenges.GetChallengeNameByConnectionId(Context.ConnectionId);
+            await Clients.OthersInGroup(groupName).SendAsync("ProcessMoveFinishing");
+        }
+
+        public async Task SendStandStatement()
+        {
+            string groupName = PlayingPazaakChallenges.GetChallengeNameByConnectionId(Context.ConnectionId);
+            await Clients.OthersInGroup(groupName).SendAsync("ProcessStandStatement");
+        }
+
+        public void FinishPazaakGame()
+        {
+            string groupName = PlayingPazaakChallenges.GetChallengeNameByConnectionId(Context.ConnectionId);
+            PlayingPazaakChallenges.RemoveChallengeByGroupName(groupName);
         }
     }
 }

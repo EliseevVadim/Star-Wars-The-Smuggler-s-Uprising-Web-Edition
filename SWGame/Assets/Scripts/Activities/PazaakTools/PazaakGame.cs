@@ -496,7 +496,6 @@ namespace SWGame.Activities.PazaakTools
                 }
                 UpdateView();
                 _resultMessage.SetActive(false);
-                //PlayerInformationVisualisator.UpdateView();
                 _endGameMessage.SetActive(true);
             }
         }

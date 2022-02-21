@@ -13,6 +13,7 @@ using SWGame.View.Presenters;
 using Newtonsoft.Json;
 using SWGame.ViewModels;
 using SWGame.Activities.PazaakTools.OnlinePazaak;
+using SWGame.Entities.Items.Cards;
 
 namespace SWGame.View.Scenes
 {
@@ -36,10 +37,12 @@ namespace SWGame.View.Scenes
         [SerializeField] private InputField _messageField;
         [SerializeField] private GameObject _errorMessage;
         [SerializeField] private Text _errorText;
+        [SerializeField] private GameObject _onlinePazaakGame;
 
         private Player _currentPlayer;
         private ClientManager _clientManager;
         private MessagesDispatcher _messagesDispatcher;
+        private OnlinePazaakGame _onlinePazaak;
 
         private PlanetsRepository _planetsRepository;
         private LocationsRepository _locationsRepository;
@@ -54,6 +57,7 @@ namespace SWGame.View.Scenes
             _currentPlayer = CurrentPlayer.Player;
             _messagesDispatcher = GetComponent<MessagesDispatcher>();
             _clientManager = FindObjectOfType<ClientManager>().GetComponent<ClientManager>();
+            _onlinePazaak = _onlinePazaakGame.GetComponent<OnlinePazaakGame>();
             _clientManager.MainScene = this;
             List<Sprite> lootSprites = LootItemsIconsRepository.ItemsSprites;
             List<Sprite> questSprites = QuestItemsIconsRepository.Icons;
@@ -240,6 +244,37 @@ namespace SWGame.View.Scenes
                 _errorText.text = "Невозможно создать больше одной игры";
                 _errorMessage.SetActive(true);
             }));
+        }
+
+        public void StartOnlinePazaakGame(PazaakChallenge challenge, bool movesFirst)
+        {
+            _messagesDispatcher.AddMessage(new Action(() =>
+            {
+                _onlinePazaak.SetInitialInfo(challenge.Amount, challenge.Creator, movesFirst);
+                _onlinePazaakGame.SetActive(true);
+            }));
+        }
+
+        public void ProcessCard(string response)
+        {
+            PazaakCardsCreator creator = new PazaakCardsCreator(response);
+            Card card = creator.CreateCard();
+            _onlinePazaak.ReceiveOpponentsCard(card);
+        }
+
+        public void ProcessMoveFinishing()
+        {
+            _onlinePazaak.ProcessMoveFinishing();
+        }
+
+        public void ProcessStandStatement()
+        {
+            _onlinePazaak.ProcessStandStatement();
+        }
+
+        public void ProcessOpponentDisconnection()
+        {
+            _onlinePazaak.ProcessOpponentDisconnection();
         }
     }
 }

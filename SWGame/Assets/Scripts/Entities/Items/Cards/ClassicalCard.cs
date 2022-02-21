@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Newtonsoft.Json;
 using SWGame.Activities.PazaakTools;
+using SWGame.View.Scenes;
 
 namespace SWGame.Entities.Items.Cards
 {
@@ -35,6 +36,20 @@ namespace SWGame.Entities.Items.Cards
             deck.CardsValues[index].text = _valueInLine;
             deck.Sum += _value;
             deck.CurrentIndex++;
+        }
+
+        public override void AddServerCardToDeck(Deck deck, MessagesDispatcher dispatcher)
+        {
+            dispatcher.AddMessage(new Action(() =>
+            {
+                int index = deck.CurrentIndex;
+                deck.Cards[index] = this;
+                deck.DeckView[index].sprite = _image;
+                deck.DeckView[index].color = Color.white;
+                deck.CardsValues[index].text = _valueInLine;
+                deck.Sum += _value;
+                deck.CurrentIndex++;
+            }));
         }
 
         public override bool Equals(object obj)

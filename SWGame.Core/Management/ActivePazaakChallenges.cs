@@ -25,7 +25,6 @@ namespace SWGame.Core.Management
             {
                 throw new ChallengeAlreadyExistException();
             }
-            _namesAndConnectionsIds.Add(connectionId, creator);
             PazaakChallenge challenge = new PazaakChallenge()
             {
                 Creator = creator,
@@ -33,11 +32,13 @@ namespace SWGame.Core.Management
                 Name = creator + "#" + new Guid().ToString()
             };
             _pazaakChallenges.Add(challenge);
+            _namesAndConnectionsIds.Add(connectionId, creator);
         }
 
         public static void RemoveChallengeByConnectionId(string connectionId)
         {
             string creator = _namesAndConnectionsIds.GetValueOrDefault(connectionId);
+            _namesAndConnectionsIds.Remove(connectionId);
             if (creator == null)
                 return;
             PazaakChallenge target = _pazaakChallenges.Where(challenge => challenge.Creator == creator).FirstOrDefault();
@@ -50,6 +51,11 @@ namespace SWGame.Core.Management
         private static bool ChallengeAlreadyExists(string creator)
         {
             return _pazaakChallenges.Where(challenge => challenge.Creator == creator).Any();
+        }
+
+        public static string GetConnectionIdByCreatorsName(string creator)
+        {
+            return _namesAndConnectionsIds.Where(pair => pair.Value == creator).FirstOrDefault().Key;
         }
     }
 }

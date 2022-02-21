@@ -36,7 +36,14 @@ namespace SWGame.Activities.PazaakTools
 
         public void Clear()
         {
-            Array.Clear(_cards, 0, _cards.Length);
+            if (_cards == null)
+            {
+                _cards = new Card[9];
+            }
+            else
+            {
+                Array.Clear(_cards, 0, _cards.Length);
+            }
             _currentIndex = 0;
             _sum = 0;
             _hasATiebreaker = false;

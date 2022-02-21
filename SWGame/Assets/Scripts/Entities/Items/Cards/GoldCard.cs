@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using SWGame.View.Scenes;
 
 namespace SWGame.Entities.Items.Cards
 {
@@ -99,6 +100,68 @@ namespace SWGame.Entities.Items.Cards
                     break;
             }
             deck.CurrentIndex++;
+        }
+
+        public override void AddServerCardToDeck(Deck deck, MessagesDispatcher dispatcher)
+        {
+            dispatcher.AddMessage(new Action(() =>
+            {
+                int index = deck.CurrentIndex;
+                deck.Cards[index] = this;
+                deck.DeckView[index].sprite = _image;
+                deck.DeckView[index].color = Color.white;
+                deck.CardsValues[index].text = _valueInLine;
+                switch (_type)
+                {
+                    case GoldCardType.DCard:
+                        try
+                        {
+                            deck.Sum += deck.Cards[index - 1].Value;
+                        }
+                        catch { }
+                        break;
+                    case GoldCardType.PlusMinusOneOrTwo:
+                        deck.Sum += _value;
+                        break;
+                    case GoldCardType.TCard:
+                        deck.Sum += _value;
+                        deck.HasATiebreaker = true;
+                        break;
+                    case GoldCardType.ThreeAndSix:
+                        for (int i = 0; i < deck.Cards.Length; i++)
+                        {
+                            try
+                            {
+                                if ((deck.Cards[i].Value == 3 || deck.Cards[i].Value == 6) &&
+                                    !(deck.Cards[i] is ClassicalCard || deck.Cards[i] is FlippableCard))
+                                {
+                                    deck.Sum -= 2 * deck.Cards[i].Value;
+                                    deck.DeckView[i].sprite = CardsImagesRepository.Cards[3];
+                                    deck.CardsValues[i].text = "-" + deck.CardsValues[i].text;
+                                }
+                            }
+                            catch { }
+                        }
+                        break;
+                    case GoldCardType.TwoAndFour:
+                        for (int i = 0; i < deck.Cards.Length; i++)
+                        {
+                            try
+                            {
+                                if ((deck.Cards[i].Value == 2 || deck.Cards[i].Value == 4) &&
+                                    !(deck.Cards[i] is ClassicalCard || deck.Cards[i] is FlippableCard))
+                                {
+                                    deck.Sum -= 2 * deck.Cards[i].Value;
+                                    deck.DeckView[i].sprite = CardsImagesRepository.Cards[3];
+                                    deck.CardsValues[i].text = "-" + deck.CardsValues[i].text;
+                                }
+                            }
+                            catch { }
+                        }
+                        break;
+                }
+                deck.CurrentIndex++;
+            }));
         }
 
         public override bool Equals(object obj)

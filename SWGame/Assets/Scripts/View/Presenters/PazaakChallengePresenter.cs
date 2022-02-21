@@ -13,6 +13,8 @@ namespace SWGame.View.Presenters
         [SerializeField] private Text _amountField;
         [SerializeField] private Button _acceptButton;
         [SerializeField] private Button _cancelButton;
+        [SerializeField] private GameObject _errorMessage;
+        [SerializeField] private Text _errorText;
 
         private PazaakChallenge _challenge;
 
@@ -28,6 +30,27 @@ namespace SWGame.View.Presenters
         public async void CancelChallenge()
         {
             await FindObjectOfType<ClientManager>().RemoveChallenge();
+        }
+
+        public async void AcceptChallenge()
+        {
+            if (!CurrentPlayer.Player.CanPlayPazaak())
+            {
+                PrepareErrorPanel("Не хватает карт для игры в Пазаак.");
+                return;
+            }
+            if(CurrentPlayer.Player.Credits < _challenge.Amount)
+            {
+                PrepareErrorPanel("Не хватает кредитов.");
+                return;
+            }
+            await FindObjectOfType<ClientManager>().AcceptChallenge(CurrentPlayer.Player.Nickname, _challenge.Creator);
+        }
+
+        private void PrepareErrorPanel(string message)
+        {
+            _errorText.text = message;
+            _errorMessage.SetActive(true);
         }
     }
 }

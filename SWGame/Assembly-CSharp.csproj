@@ -84,6 +84,7 @@
     <Compile Include="Assets\Scripts\Entities\Player.cs" />
     <Compile Include="Assets\Scripts\Management\SpritesLoader.cs" />
     <Compile Include="Assets\Scripts\View\Presenters\ExchangeSlotPresenter.cs" />
+    <Compile Include="Assets\Scripts\Activities\PazaakTools\OnlinePazaak\PazaakChallenge.cs" />
     <Compile Include="Assets\Scripts\View\ActionsHandlers\ButtonActionsHandler.cs" />
     <Compile Include="Assets\Scripts\View\Presenters\MessagePresenter.cs" />
     <Compile Include="Assets\Scripts\Entities\Chat.cs" />
@@ -99,6 +100,7 @@
     <Compile Include="Assets\Scripts\Entities\ChatMessage.cs" />
     <Compile Include="Assets\Scripts\Enums\ExchangePointType.cs" />
     <Compile Include="Assets\Scripts\Management\ItemCellsCreators\InventoryCellsCreator.cs" />
+    <Compile Include="Assets\Scripts\Activities\PazaakTools\OnlinePazaak\OnlinePazaakGame.cs" />
     <Compile Include="Assets\Scripts\Entities\Items\QuestItem.cs" />
     <Compile Include="Assets\Scripts\Management\Validators\NicknameValidator.cs" />
     <Compile Include="Assets\Scripts\View\ActionsHandlers\CardsActionsHandler.cs" />
@@ -132,6 +134,7 @@
     <Compile Include="Assets\Scripts\GlobalConfigurations\Settings.cs" />
     <Compile Include="Assets\Scripts\Exceptions\ValidationExceptions\WrongNicknameException.cs" />
     <Compile Include="Assets\Scripts\Entities\Items\Item.cs" />
+    <Compile Include="Assets\Scripts\Activities\PazaakTools\OnlinePazaak\PazaakChallengesManager.cs" />
     <Compile Include="Assets\Scripts\View\Presenters\PazaakChallengesVisualizator.cs" />
     <Compile Include="Assets\Scripts\Exceptions\ValidationExceptions\WrongPasswordException.cs" />
     <Compile Include="Assets\Scripts\View\ActionsHandlers\PlanetEvents\NarShaddaaEvents.cs" />
@@ -139,8 +142,7 @@
     <Compile Include="Assets\Scripts\View\Presenters\NeighbourPlayersVisualizator.cs" />
     <Compile Include="Assets\Scripts\View\Presenters\NeighbourPlayerPresenter.cs" />
     <Compile Include="Assets\Scripts\View\Presenters\InventoryVisualizator.cs" />
-    <Compile Include="Assets\Scripts\Activities\PazaakTools\OnlinePazaak\PazaakChallenge.cs" />
-    <Compile Include="Assets\Scripts\Activities\PazaakTools\OnlinePazaak\PazaakChallengesManager.cs" />
+    <Compile Include="Assets\Scripts\Management\PazaakCardsCreator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

@@ -60,12 +60,13 @@ namespace SWGame.GlobalConfigurations
             if (_hubConnection == null)
             {
                 _hubConnection = new HubConnectionBuilder()
-                    .WithUrl(_url)
+                    .WithUrl(_url)                  
                     .Build();
+                _hubConnection.ServerTimeout = TimeSpan.FromMinutes(5);
                 _hubConnection.Closed += async (error) =>
                 {
                     await Task.Delay(1000);
-                    Debug.Log("fuck");
+                    Debug.Log(error);
                     UpdateMessagesDispatcher();
                     _messagesDispatcher.AddMessage(new Action(() =>
                     {
@@ -175,6 +176,26 @@ namespace SWGame.GlobalConfigurations
             _hubConnection.On("DisplayChallengeCreationError", () =>
             {
                 _mainScene.DisplayChallengeCreationError();
+            });
+            _hubConnection.On<PazaakChallenge, bool>("StartOnlinePazaakGame", (challenge, movesFirst) =>
+            {
+                _mainScene.StartOnlinePazaakGame(challenge, movesFirst);
+            });
+            _hubConnection.On<string>("ProcessCard", (response) =>
+            {
+                _mainScene.ProcessCard(response);
+            });
+            _hubConnection.On("ProcessMoveFinishing", () =>
+            {
+                _mainScene.ProcessMoveFinishing();
+            });
+            _hubConnection.On("ProcessStandStatement", () =>
+            {
+                _mainScene.ProcessStandStatement();
+            });
+            _hubConnection.On("ProcessOpponentDisconnection", () =>
+            {
+                _mainScene.ProcessOpponentDisconnection();
             });
             try
             {
@@ -338,6 +359,32 @@ namespace SWGame.GlobalConfigurations
         public async Task RemoveChallenge()
         {
             await _hubConnection.InvokeAsync("RemovePazaakChallenge");
+        }
+
+        public async Task AcceptChallenge(string acceptor, string creator)
+        {
+            await _hubConnection.InvokeAsync("AcceptChallenge", acceptor, creator);
+        }
+
+        public async Task SendCardAddition(Card addition)
+        {
+            string request = JsonConvert.SerializeObject(addition);
+            await _hubConnection.InvokeAsync("SendCardAddition", request);
+        }
+        
+        public async Task SendMoveFinishing()
+        {
+            await _hubConnection.InvokeAsync("SendMoveFinishing");
+        }
+
+        public async Task SendStandStatement()
+        {
+            await _hubConnection.InvokeAsync("SendStandStatement");
+        }
+
+        public async Task SendGameFinishing()
+        {
+            await _hubConnection.InvokeAsync("FinishPazaakGame");
         }
     }
 }
