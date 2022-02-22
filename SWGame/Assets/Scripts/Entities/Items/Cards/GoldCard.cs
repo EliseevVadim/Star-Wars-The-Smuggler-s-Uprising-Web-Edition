@@ -19,19 +19,18 @@ namespace SWGame.Entities.Items.Cards
         private int[] _possibleValues;
 
         [JsonConstructor]
-        public GoldCard(int id, string name, GoldCardType type, int value) : base(id, name, value)
+        public GoldCard(int id, string name, GoldCardType type, int value, int index) : base(id, name, value)
         {
+            _index = index;
             _image = CardsImagesRepository.Cards[1];
             _type = type;
             switch (_type)
             {
                 case GoldCardType.PlusMinusOneOrTwo:
-                    _index = 0;
                     _possibleValues = new int[] { 1, -1, 2, -2 };
                     _value = _possibleValues[_index];
                     break;
                 case GoldCardType.TCard:
-                    _index = 0;
                     _possibleValues = new int[] { 1, -1 };
                     _value = _possibleValues[_index];
                     break;
