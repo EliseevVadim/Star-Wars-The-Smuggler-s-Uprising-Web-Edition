@@ -26,9 +26,6 @@ namespace SWGame.View.Scenes
 
         private void Start()
         {
-            _nicknameField.text = "Администратор";
-            _loginField.text = "ImmortalSorc";
-            _passwordField.text = "erudit316";
             _messagesDispatcher = GetComponent<MessagesDispatcher>();
             _clientManager = FindObjectOfType<ClientManager>().GetComponent<ClientManager>();
             _clientManager.AuthorizationScene = this;
