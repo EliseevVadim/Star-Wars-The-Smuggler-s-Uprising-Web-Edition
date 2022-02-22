@@ -207,23 +207,42 @@ namespace SWGame.GlobalConfigurations
                 UpdateMessagesDispatcher();
                 _messagesDispatcher.AddMessage(new Action(() =>
                 {
-                    _messagesDispatcher.ConnectionErrorText.text = "Ошибка подключения. Сервер не отвечает на запрос.";
-                    _messagesDispatcher.ConnectionErrorMessage.SetActive(true);
+                    DisplayErrorMessage("Ошибка подключения. Сервер не отвечает на запрос.");
                 }));
                 Debug.Log(ex.Message);
             }
         }
         public async Task RegisterPlayerAsync(Player player)
         {
-            string data = JsonConvert.SerializeObject(player, new JsonSerializerSettings()
+            try
             {
-                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,               
-            });
-            await _hubConnection.InvokeAsync("RegisterPlayer", data);
+                string data = JsonConvert.SerializeObject(player, new JsonSerializerSettings()
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+                });
+                await _hubConnection.InvokeAsync("RegisterPlayer", data);
+            }
+            catch
+            {
+                _messagesDispatcher.AddMessage(new Action(() =>
+                {
+                    DisplayErrorMessage("Ошибка подключения. Сервер не отвечает на запрос.");
+                }));
+            }
         }
         public async Task CheckUserExistanceAsync(string name, string login, string password)
         {
-            await _hubConnection.InvokeAsync("CheckPlayerExistance", name, login, password);
+            try
+            {
+                await _hubConnection.InvokeAsync("CheckPlayerExistance", name, login, password);
+            }
+            catch
+            {
+                _messagesDispatcher.AddMessage(new Action(() =>
+                {
+                    DisplayErrorMessage("Ошибка подключения. Сервер не отвечает на запрос.");
+                }));
+            }
         }
 
         public void UpdateMessagesDispatcher()
@@ -237,160 +256,466 @@ namespace SWGame.GlobalConfigurations
 
         public async Task LoadAllPlanets()
         {
-            await _hubConnection.InvokeAsync("LoadAllPlanets");
+            try
+            {
+                await _hubConnection.InvokeAsync("LoadAllPlanets");
+            }
+            catch
+            {
+                _messagesDispatcher.AddMessage(new Action(() =>
+                {
+                    DisplayErrorMessage("Ошибка подключения. Сервер не отвечает на запрос.");
+                }));
+            }
         }
 
         public async Task LoadAllLocations()
         {
-            await _hubConnection.InvokeAsync("LoadAllLocations");
+            try
+            {
+                await _hubConnection.InvokeAsync("LoadAllLocations");
+            }
+            catch
+            {
+                _messagesDispatcher.AddMessage(new Action(() =>
+                {
+                    DisplayErrorMessage("Ошибка подключения. Сервер не отвечает на запрос.");
+                }));
+            }
         }
 
         public async Task ChangePlayersLocation(Player player, int newLocationId)
         {
-            string data = JsonConvert.SerializeObject(player);
-            await _hubConnection.InvokeAsync("ChangeLocation", data, newLocationId);
+            try
+            {
+                string data = JsonConvert.SerializeObject(player);
+                await _hubConnection.InvokeAsync("ChangeLocation", data, newLocationId);
+            }
+            catch
+            {
+                _messagesDispatcher.AddMessage(new Action(() =>
+                {
+                    DisplayErrorMessage("Ошибка подключения. Сервер не отвечает на запрос.");
+                }));
+            }
         }
 
         public async Task UpdatePlayersCredits(Player player)
         {
-            string data = JsonConvert.SerializeObject(player);
-            await _hubConnection.InvokeAsync("UpdateCredits", data);
+            try
+            {
+                string data = JsonConvert.SerializeObject(player);
+                await _hubConnection.InvokeAsync("UpdateCredits", data);
+            }
+            catch
+            {
+                _messagesDispatcher.AddMessage(new Action(() =>
+                {
+                    DisplayErrorMessage("Ошибка подключения. Сервер не отвечает на запрос.");
+                }));
+            }
         }
 
         public async Task UpdatePlayersTutorialDisplayment(Player player)
         {
-            string data = JsonConvert.SerializeObject(player);
-            await _hubConnection.InvokeAsync("UpdateTutorialDisplayment", data);
+            try
+            {
+                string data = JsonConvert.SerializeObject(player);
+                await _hubConnection.InvokeAsync("UpdateTutorialDisplayment", data);
+            }
+            catch
+            {
+                _messagesDispatcher.AddMessage(new Action(() =>
+                {
+                    DisplayErrorMessage("Ошибка подключения. Сервер не отвечает на запрос.");
+                }));
+            }
         }
 
         public async Task UpdateStoryFinishing(Player player)
         {
-            string data = JsonConvert.SerializeObject(player);
-            await _hubConnection.InvokeAsync("UpdateStoryFinishing", data);
+            try
+            {
+                string data = JsonConvert.SerializeObject(player);
+                await _hubConnection.InvokeAsync("UpdateStoryFinishing", data);
+            }
+            catch
+            {
+                _messagesDispatcher.AddMessage(new Action(() =>
+                {
+                    DisplayErrorMessage("Ошибка подключения. Сервер не отвечает на запрос.");
+                }));
+            }
         }
 
         public async Task UpdatePlayersPrestige(Player player)
         {
-            string data = JsonConvert.SerializeObject(player);
-            await _hubConnection.InvokeAsync("UpdatePrestige", data);
+            try
+            {
+                string data = JsonConvert.SerializeObject(player);
+                await _hubConnection.InvokeAsync("UpdatePrestige", data);
+            }
+            catch
+            {
+                _messagesDispatcher.AddMessage(new Action(() =>
+                {
+                    DisplayErrorMessage("Ошибка подключения. Сервер не отвечает на запрос.");
+                }));
+            }
         }
 
         public async Task UpdatePlayersWisdom(Player player)
         {
-            string data = JsonConvert.SerializeObject(player);
-            await _hubConnection.InvokeAsync("UpdateWisdom", data);
+            try
+            {
+                string data = JsonConvert.SerializeObject(player);
+                await _hubConnection.InvokeAsync("UpdateWisdom", data);
+            }
+            catch
+            {
+                _messagesDispatcher.AddMessage(new Action(() =>
+                {
+                    DisplayErrorMessage("Ошибка подключения. Сервер не отвечает на запрос.");
+                }));
+            }   
         }
 
         public async Task GetPlayersNeighbours(int locationId)
         {
-            await _hubConnection.InvokeAsync("GetNeighbours", locationId);
+            try
+            {
+                await _hubConnection.InvokeAsync("GetNeighbours", locationId);
+            }
+            catch
+            {
+                _messagesDispatcher.AddMessage(new Action(() =>
+                {
+                    DisplayErrorMessage("Ошибка подключения. Сервер не отвечает на запрос.");
+                }));
+            }
         }
 
         public async Task UpdatePlanetsTreasury(Planet planet)
         {
-            string data = JsonConvert.SerializeObject(planet);
-            await _hubConnection.InvokeAsync("UpdateTreasury", data);
+            try
+            {
+                string data = JsonConvert.SerializeObject(planet);
+                await _hubConnection.InvokeAsync("UpdateTreasury", data);
+            }
+            catch
+            {
+                _messagesDispatcher.AddMessage(new Action(() =>
+                {
+                    DisplayErrorMessage("Ошибка подключения. Сервер не отвечает на запрос.");
+                }));
+            }
         }
 
         public async Task GetPlayersInfo(int playersId)
         {
-            await _hubConnection.InvokeAsync("GetPlayersInfo", playersId);
+            try
+            {
+                await _hubConnection.InvokeAsync("GetPlayersInfo", playersId);
+            }
+            catch
+            {
+                _messagesDispatcher.AddMessage(new Action(() =>
+                {
+                    DisplayErrorMessage("Ошибка подключения. Сервер не отвечает на запрос.");
+                }));
+            }
         }
 
         public async Task AddPlayerToChallengesViewers()
         {
-            await _hubConnection.InvokeAsync("AddPlayerToChallengesViewers");
+            try
+            {
+                await _hubConnection.InvokeAsync("AddPlayerToChallengesViewers");
+            }
+            catch
+            {
+                _messagesDispatcher.AddMessage(new Action(() =>
+                {
+                    DisplayErrorMessage("Ошибка подключения. Сервер не отвечает на запрос.");
+                }));
+            }
         }
 
         public async Task LoadInventoryItems(int inventoryId)
         {
-            await _hubConnection.InvokeAsync("LoadInventoryItems", inventoryId);
+            try
+            {
+                await _hubConnection.InvokeAsync("LoadInventoryItems", inventoryId);
+            }
+            catch
+            {
+                _messagesDispatcher.AddMessage(new Action(() =>
+                {
+                    DisplayErrorMessage("Ошибка подключения. Сервер не отвечает на запрос.");
+                }));
+            }
         }
 
         public async Task LoadShopInfo(int locationId)
         {
-            await _hubConnection.InvokeAsync("LoadShopInfo", locationId);
+            try
+            {
+                await _hubConnection.InvokeAsync("LoadShopInfo", locationId);
+            }
+            catch
+            {
+                _messagesDispatcher.AddMessage(new Action(() =>
+                {
+                    DisplayErrorMessage("Ошибка подключения. Сервер не отвечает на запрос.");
+                }));
+            }
         }
 
         public async Task LoadAllShopItems(int shopId)
         {
-            await _hubConnection.InvokeAsync("LoadAllShopItems", shopId);
+            try
+            {
+                await _hubConnection.InvokeAsync("LoadAllShopItems", shopId);
+            }
+            catch
+            {
+                _messagesDispatcher.AddMessage(new Action(() =>
+                {
+                    DisplayErrorMessage("Ошибка подключения. Сервер не отвечает на запрос.");
+                }));
+            }
         }
 
         public async Task LoadChatInfo(int locationId)
         {
-            await _hubConnection.InvokeAsync("LoadChatInfo", locationId);
+            try
+            {
+                await _hubConnection.InvokeAsync("LoadChatInfo", locationId);
+            }
+            catch
+            {
+                _messagesDispatcher.AddMessage(new Action(() =>
+                {
+                    DisplayErrorMessage("Ошибка подключения. Сервер не отвечает на запрос.");
+                }));
+            }
         }
 
         public async Task LoadMessages(int chatId)
         {
-            await _hubConnection.InvokeAsync("LoadMessages", chatId);
+            try
+            {
+                await _hubConnection.InvokeAsync("LoadMessages", chatId);
+            }
+            catch
+            {
+                _messagesDispatcher.AddMessage(new Action(() =>
+                {
+                    DisplayErrorMessage("Ошибка подключения. Сервер не отвечает на запрос.");
+                }));
+            }
         }
 
         public async Task CreateInventoryCell(InventoryCellDataModel cell)
         {
-            await _hubConnection.InvokeAsync("CreateInventoryCell", cell);
+            try
+            {
+                await _hubConnection.InvokeAsync("CreateInventoryCell", cell);
+            }
+            catch
+            {
+                _messagesDispatcher.AddMessage(new Action(() =>
+                {
+                    DisplayErrorMessage("Ошибка подключения. Сервер не отвечает на запрос.");
+                }));
+            }
         }
 
         public async Task UpdateInventoryCell(InventoryCellDataModel cell)
         {
-            await _hubConnection.InvokeAsync("UpdateInventoryCell", cell);
+            try
+            {
+                await _hubConnection.InvokeAsync("UpdateInventoryCell", cell);
+            }
+            catch
+            {
+                _messagesDispatcher.AddMessage(new Action(() =>
+                {
+                    DisplayErrorMessage("Ошибка подключения. Сервер не отвечает на запрос.");
+                }));
+            }
         }
 
         public async Task RemoveInventoryCell(InventoryCellDataModel cell)
         {
-            await _hubConnection.InvokeAsync("RemoveInventoryCell", cell);
+            try
+            {
+                await _hubConnection.InvokeAsync("RemoveInventoryCell", cell);
+            }
+            catch
+            {
+                _messagesDispatcher.AddMessage(new Action(() =>
+                {
+                    DisplayErrorMessage("Ошибка подключения. Сервер не отвечает на запрос.");
+                }));
+            }
         }
 
         public async Task LoadPazaakCards()
         {
-            await _hubConnection.InvokeAsync("LoadPazaakCards");
+            try
+            {
+                await _hubConnection.InvokeAsync("LoadPazaakCards");
+            }
+            catch
+            {
+                _messagesDispatcher.AddMessage(new Action(() =>
+                {
+                    DisplayErrorMessage("Ошибка подключения. Сервер не отвечает на запрос.");
+                }));
+            }
         }
 
         public async Task LoadItems()
         {
-            await _hubConnection.InvokeAsync("LoadItems");
+            try
+            {
+                await _hubConnection.InvokeAsync("LoadItems");
+            }
+            catch
+            {
+                _messagesDispatcher.AddMessage(new Action(() =>
+                {
+                    DisplayErrorMessage("Ошибка подключения. Сервер не отвечает на запрос.");
+                }));
+            }
         }
 
         public async Task SendMessage(ChatMessage message)
         {
-            await _hubConnection.InvokeAsync("SendMessage", message);
+            try
+            {
+                await _hubConnection.InvokeAsync("SendMessage", message);
+            }
+            catch
+            {
+                _messagesDispatcher.AddMessage(new Action(() =>
+                {
+                    DisplayErrorMessage("Ошибка подключения. Сервер не отвечает на запрос.");
+                }));
+            }
         }
 
         public async Task CreatePazaakChallenge(string creator, int amount)
         {
-            await _hubConnection.InvokeAsync("CreatePazaakChallenge", creator, amount);
+            try
+            {
+                await _hubConnection.InvokeAsync("CreatePazaakChallenge", creator, amount);
+            }
+            catch
+            {
+                _messagesDispatcher.AddMessage(new Action(() =>
+                {
+                    DisplayErrorMessage("Ошибка подключения. Сервер не отвечает на запрос.");
+                }));
+            }
         }
 
         public async Task RemoveChallenge()
         {
-            await _hubConnection.InvokeAsync("RemovePazaakChallenge");
+            try
+            {
+                await _hubConnection.InvokeAsync("RemovePazaakChallenge");
+            }
+            catch
+            {
+                _messagesDispatcher.AddMessage(new Action(() =>
+                {
+                    DisplayErrorMessage("Ошибка подключения. Сервер не отвечает на запрос.");
+                }));
+            }
         }
 
         public async Task AcceptChallenge(string acceptor, string creator)
         {
-            await _hubConnection.InvokeAsync("AcceptChallenge", acceptor, creator);
+            try
+            {
+                await _hubConnection.InvokeAsync("AcceptChallenge", acceptor, creator);
+            }
+            catch
+            {
+                _messagesDispatcher.AddMessage(new Action(() =>
+                {
+                    DisplayErrorMessage("Ошибка подключения. Сервер не отвечает на запрос.");
+                }));
+            }
         }
 
         public async Task SendCardAddition(Card addition)
         {
-            string request = JsonConvert.SerializeObject(addition);
-            await _hubConnection.InvokeAsync("SendCardAddition", request);
+            try
+            {
+                string request = JsonConvert.SerializeObject(addition);
+                await _hubConnection.InvokeAsync("SendCardAddition", request);
+            }
+            catch
+            {
+                _messagesDispatcher.AddMessage(new Action(() =>
+                {
+                    DisplayErrorMessage("Ошибка подключения. Сервер не отвечает на запрос.");
+                }));
+            }
         }
         
         public async Task SendMoveFinishing()
         {
-            await _hubConnection.InvokeAsync("SendMoveFinishing");
+            try
+            {
+                await _hubConnection.InvokeAsync("SendMoveFinishing");
+            }
+            catch
+            {
+                _messagesDispatcher.AddMessage(new Action(() =>
+                {
+                    DisplayErrorMessage("Ошибка подключения. Сервер не отвечает на запрос.");
+                }));
+            }
         }
 
         public async Task SendStandStatement()
         {
-            await _hubConnection.InvokeAsync("SendStandStatement");
+            try
+            {
+                await _hubConnection.InvokeAsync("SendStandStatement");
+            }
+            catch
+            {
+                _messagesDispatcher.AddMessage(new Action(() =>
+                {
+                    DisplayErrorMessage("Ошибка подключения. Сервер не отвечает на запрос.");
+                }));
+            }
         }
 
         public async Task SendGameFinishing()
         {
-            await _hubConnection.InvokeAsync("FinishPazaakGame");
+            try
+            {
+                await _hubConnection.InvokeAsync("FinishPazaakGame");
+            }
+            catch
+            {
+                _messagesDispatcher.AddMessage(new Action(() =>
+                {
+                    DisplayErrorMessage("Ошибка подключения. Сервер не отвечает на запрос.");
+                }));
+            }
+        }
+
+        private void DisplayErrorMessage(string message)
+        {
+            _messagesDispatcher.ConnectionErrorText.text = message;
+            _messagesDispatcher.ConnectionErrorMessage.SetActive(true);
         }
     }
 }

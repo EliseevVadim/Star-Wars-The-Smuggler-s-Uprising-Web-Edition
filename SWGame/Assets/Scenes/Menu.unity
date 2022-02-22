@@ -3490,7 +3490,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: "\u041E\u0448\u0438\u0431\u043A\u0430 \u043F\u043E\u0434\u043A\u043B\u044E\u0447\u0435\u043D\u0438\u044F.
+    \u0421\u0435\u0440\u0432\u0435\u0440 \u043D\u0435 \u043E\u0442\u0432\u0435\u0447\u0430\u0435\u0442
+    \u043D\u0430 \u0437\u0430\u043F\u0440\u043E\u0441."
 --- !u!222 &1362744038
 CanvasRenderer:
   m_ObjectHideFlags: 0
