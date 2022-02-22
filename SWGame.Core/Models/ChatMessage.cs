@@ -1,6 +1,6 @@
-﻿using System.Threading.Tasks;
-using MySql.Data.MySqlClient;
+﻿using MySql.Data.MySqlClient;
 using SWGame.Core.Management;
+using System.Threading.Tasks;
 
 namespace SWGame.Core.Models
 {
@@ -32,6 +32,6 @@ namespace SWGame.Core.Models
                 command.Parameters.AddWithValue("@content", _message);
                 await command.ExecuteNonQueryAsync();
             }
-        } 
+        }
     }
 }

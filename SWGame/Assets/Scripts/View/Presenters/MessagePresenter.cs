@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SWGame.Entities;
+﻿using SWGame.Entities;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,7 +8,7 @@ namespace SWGame.View.Presenters
     {
         [SerializeField] private Text _timeField;
         [SerializeField] private Text _messageField;
-        [SerializeField] private Text _authorField; 
+        [SerializeField] private Text _authorField;
 
         public void Visualize(ChatMessage message)
         {

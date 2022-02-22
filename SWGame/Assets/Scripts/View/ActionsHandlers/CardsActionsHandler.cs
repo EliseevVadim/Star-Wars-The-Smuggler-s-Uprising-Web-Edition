@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.EventSystems;
-using SWGame.Activities.PazaakTools;
+﻿using SWGame.Activities.PazaakTools;
 using SWGame.Activities.PazaakTools.OnlinePazaak;
+using System.Linq;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace SWGame.View.ActionsHandlers
 {
@@ -19,7 +15,7 @@ namespace SWGame.View.ActionsHandlers
         {
             OnlinePazaakGame onlinePazaak = (OnlinePazaakGame)Resources.FindObjectsOfTypeAll(typeof(OnlinePazaakGame)).ToArray()[0];
             switch (eventData.clickCount)
-            {    
+            {
                 case 1:
                     if (onlinePazaak.gameObject.activeSelf)
                     {

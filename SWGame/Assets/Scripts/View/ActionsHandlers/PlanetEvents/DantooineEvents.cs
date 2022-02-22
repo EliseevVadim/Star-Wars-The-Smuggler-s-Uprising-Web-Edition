@@ -1,13 +1,13 @@
+using SWGame.Activities;
 using SWGame.Entities;
+using SWGame.Entities.Items;
+using SWGame.Enums;
+using SWGame.Exceptions;
+using SWGame.Management;
 using SWGame.Management.Repositories;
 using SWGame.View.Scenes;
-using SWGame.Management;
 using UnityEngine;
 using UnityEngine.UI;
-using SWGame.Activities;
-using SWGame.Enums;
-using SWGame.Entities.Items;
-using SWGame.Exceptions;
 
 namespace SWGame.View.ActionsHandlers.PlanetEvents
 {

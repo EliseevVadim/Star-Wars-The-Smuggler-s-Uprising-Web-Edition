@@ -23,7 +23,7 @@ namespace SWGame.Core.Models
 
         public Player GetCorrespondingUser()
         {
-            using(MySqlConnection connection = new MySqlConnection(DatabaseInformation.ConnectionString))
+            using (MySqlConnection connection = new MySqlConnection(DatabaseInformation.ConnectionString))
             {
                 connection.Open();
                 string query = string.Format("SELECT id, Nickname, Login, Password, Credits, Prestige, WisdomPoints, LocationId, AvatarIndex, StoryFinished, LogoutDateTime, ShowTutorial FROM Player " +
@@ -38,12 +38,12 @@ namespace SWGame.Core.Models
                 if (reader.Read())
                 {
                     Player player = new Player((int)reader[0], (string)reader[1], (string)reader[2], (string)reader[3], (long)reader[4],
-                        (int)reader[5], (int)reader[6], (int)reader[7], 
+                        (int)reader[5], (int)reader[6], (int)reader[7],
                         reader.GetBoolean("StoryFinished"), reader.GetBoolean("ShowTutorial"), (int)reader[8], (DateTime)reader[10]);
                     return player;
                 }
                 return null;
-            }   
+            }
         }
     }
 }

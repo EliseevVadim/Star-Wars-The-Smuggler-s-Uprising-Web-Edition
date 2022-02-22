@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using MySql.Data.MySqlClient;
+﻿using MySql.Data.MySqlClient;
 using SWGame.Core.Management;
 using SWGame.Core.Models;
+using System.Collections.Generic;
 
 namespace SWGame.Core.Repositories
 {

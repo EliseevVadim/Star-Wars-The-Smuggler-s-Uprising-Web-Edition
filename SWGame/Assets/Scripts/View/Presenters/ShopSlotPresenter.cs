@@ -1,17 +1,13 @@
 ﻿using SWGame.Entities;
+using SWGame.Entities.Items.Cards;
+using SWGame.Management;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
-using SWGame.Management;
-using SWGame.Entities.Items.Cards;
 
 namespace SWGame.View.Presenters
 {
-    public class ShopSlotPresenter : MonoBehaviour 
+    public class ShopSlotPresenter : MonoBehaviour
     {
         [SerializeField] private GameObject _successMessage;
         [SerializeField] private GameObject _errorMessage;
@@ -59,7 +55,7 @@ namespace SWGame.View.Presenters
                     _errorMessage.SetActive(true);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Debug.LogException(ex);
             }
@@ -69,7 +65,7 @@ namespace SWGame.View.Presenters
             if (_currentPlayer.HasA(_slot.Stuff))
             {
                 await _currentPlayer.Inventory.RemoveItem(_slot.Stuff);
-                _currentPlayer.Credits += _slot.Stuff.SalePrice;                
+                _currentPlayer.Credits += _slot.Stuff.SalePrice;
                 _successText.text = $"Предмет успешно продан. Получено {_slot.Stuff.SalePrice} кредитов.";
                 _successMessage.SetActive(true);
             }

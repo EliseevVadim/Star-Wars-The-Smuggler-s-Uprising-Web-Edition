@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections;
+﻿using SWGame.Entities;
 using SWGame.GlobalConfigurations;
+using SWGame.Management;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
-using SWGame.Management;
-using SWGame.Entities;
 
 namespace SWGame.Activities.PazaakTools.OnlinePazaak
 {

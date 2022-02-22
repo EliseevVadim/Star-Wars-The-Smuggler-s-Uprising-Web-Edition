@@ -1,13 +1,9 @@
-﻿using SWGame.Management.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
-using Newtonsoft.Json;
-using SWGame.View.Scenes;
+﻿using Newtonsoft.Json;
 using SWGame.Activities.PazaakTools;
+using SWGame.Management.Repositories;
+using SWGame.View.Scenes;
+using System;
+using UnityEngine;
 
 namespace SWGame.Entities.Items.Cards
 {
@@ -59,7 +55,7 @@ namespace SWGame.Entities.Items.Cards
                     deck.CurrentIndex++;
                 }));
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Debug.LogException(ex);
             }

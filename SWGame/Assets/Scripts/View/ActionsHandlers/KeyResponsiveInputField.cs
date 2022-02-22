@@ -1,5 +1,4 @@
 ﻿using SWGame.Activities;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,7 +16,7 @@ namespace SWGame.View.ActionsHandlers
         private void SendMessageViaPressingEnterButton()
         {
             if (Input.GetKeyDown(KeyCode.Return))
-            {         
+            {
                 GetComponentInParent<ChatMessageSender>().Send();
             }
         }

@@ -1,13 +1,13 @@
-﻿using System.Threading.Tasks;
-using MySql.Data.MySqlClient;
+﻿using MySql.Data.MySqlClient;
 using SWGame.Core.Management;
+using System.Threading.Tasks;
 
 namespace SWGame.Core.Models
 {
-    public class Planet 
+    public class Planet
     {
         private int _id;
-        private string _name;   
+        private string _name;
         private string _description;
         private long _treasury;
         private int _travellCost;

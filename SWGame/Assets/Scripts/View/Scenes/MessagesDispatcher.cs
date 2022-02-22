@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,14 +12,14 @@ namespace SWGame.View.Scenes
         [SerializeField] private float RepeatCheckingMessagesRate;
 
         private GameObject _connectionErrorMessage;
-        
+
         private Text _connectionErrorText;
 
         public GameObject ConnectionErrorMessage
         {
             get { return _connectionErrorMessage; }
-            set 
-            { 
+            set
+            {
                 _connectionErrorMessage = value;
                 _connectionErrorMessage.transform.SetParent(transform);
             }
@@ -28,7 +27,7 @@ namespace SWGame.View.Scenes
 
         public Text ConnectionErrorText
         {
-            get { return _connectionErrorText; }    
+            get { return _connectionErrorText; }
             set
             {
                 _connectionErrorText = value;

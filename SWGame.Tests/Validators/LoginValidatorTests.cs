@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
-using SWGame.Management.Validators;
 using SWGame.Exceptions.ValidationExceptions;
+using SWGame.Management.Validators;
 
 namespace SWGame.Tests.Validators
 {

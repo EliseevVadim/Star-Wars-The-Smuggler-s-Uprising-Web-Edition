@@ -1,14 +1,14 @@
 ﻿using SWGame.Entities;
 using SWGame.Entities.Items.Cards;
-using SWGame.Management;
+using SWGame.Enums;
 using SWGame.GlobalConfigurations;
+using SWGame.Management;
+using SWGame.Management.Repositories;
+using SWGame.View.Scenes;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using SWGame.Management.Repositories;
-using SWGame.Enums;
-using SWGame.View.Scenes;
 using Random = System.Random;
 
 namespace SWGame.Activities.PazaakTools.OnlinePazaak
@@ -52,7 +52,7 @@ namespace SWGame.Activities.PazaakTools.OnlinePazaak
         private bool _movesFirst;
 
         private ClientManager _clientManager;
-        [SerializeField] private MessagesDispatcher _messagesDispatcher; 
+        [SerializeField] private MessagesDispatcher _messagesDispatcher;
 
         private void OnEnable()
         {
@@ -192,7 +192,7 @@ namespace SWGame.Activities.PazaakTools.OnlinePazaak
                     SendStandStatement();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Debug.LogException(ex);
             }
@@ -207,7 +207,7 @@ namespace SWGame.Activities.PazaakTools.OnlinePazaak
                 _playersSumField.text = _playersDeck.Sum.ToString();
                 _opponentsSumField.text = _opponentsDeck.Sum.ToString();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Debug.LogException(ex);
             }
@@ -351,7 +351,7 @@ namespace SWGame.Activities.PazaakTools.OnlinePazaak
                         await _clientManager.SendGameFinishing();
                     }
                 }
-            }));       
+            }));
         }
 
         public void SelectCard(int pos)

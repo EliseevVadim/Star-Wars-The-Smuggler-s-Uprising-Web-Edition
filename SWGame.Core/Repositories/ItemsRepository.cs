@@ -1,11 +1,10 @@
-﻿using SWGame.Core.Models;
-using SWGame.Core.Management;
-using System.Collections.Generic;
-using MySql.Data.MySqlClient;
-using SWGame.Core.Models.Items.Cards;
+﻿using MySql.Data.MySqlClient;
 using SWGame.Core.Enums;
-using System;
+using SWGame.Core.Management;
 using SWGame.Core.Models.Items;
+using SWGame.Core.Models.Items.Cards;
+using System;
+using System.Collections.Generic;
 
 namespace SWGame.Core.Repositories
 {

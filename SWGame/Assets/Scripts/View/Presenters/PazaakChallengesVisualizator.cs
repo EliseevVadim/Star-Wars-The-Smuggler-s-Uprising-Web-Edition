@@ -1,9 +1,5 @@
 ﻿using SWGame.Activities.PazaakTools.OnlinePazaak;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace SWGame.View.Presenters
@@ -13,9 +9,9 @@ namespace SWGame.View.Presenters
         [SerializeField] private Transform _container;
         [SerializeField] private PazaakChallengePresenter _challengeTemplate;
 
-        public void Render (List<PazaakChallenge> challenges)
+        public void Render(List<PazaakChallenge> challenges)
         {
-            foreach(Transform challenge in _container)
+            foreach (Transform challenge in _container)
             {
                 Destroy(challenge.gameObject);
             }

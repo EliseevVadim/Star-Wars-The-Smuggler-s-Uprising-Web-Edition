@@ -1,8 +1,8 @@
-﻿using System;
-using System.Threading.Tasks;
-using MySql.Data.MySqlClient;
-using SWGame.Core.Management;
+﻿using MySql.Data.MySqlClient;
 using Newtonsoft.Json;
+using SWGame.Core.Management;
+using System;
+using System.Threading.Tasks;
 
 namespace SWGame.Core.Models
 {
@@ -87,7 +87,7 @@ namespace SWGame.Core.Models
                 {
                     throw new Exception(ex.Message);
                 }
-            } 
+            }
         }
 
         public async Task SaveNewLocationId()

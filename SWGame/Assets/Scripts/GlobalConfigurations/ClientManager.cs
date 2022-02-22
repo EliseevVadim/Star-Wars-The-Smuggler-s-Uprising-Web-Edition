@@ -1,21 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
-using Newtonsoft.Json;
-using UnityEngine;
-using UnityEngine.UI;
 using Microsoft.AspNetCore.SignalR.Client;
-using System;
-using System.Threading.Tasks;
-using System.Linq;
-using SWGame.Entities;
-using SWGame.View.Scenes;
-using UnityEngine.SceneManagement;
-using SWGame.ViewModels;
-using SWGame.Management.ItemCellsCreators;
-using SWGame.Entities.Items.Cards;
-using SWGame.Management.Repositories;
-using SWGame.Entities.Items;
+using Newtonsoft.Json;
 using SWGame.Activities.PazaakTools.OnlinePazaak;
+using SWGame.Entities;
+using SWGame.Entities.Items;
+using SWGame.Entities.Items.Cards;
+using SWGame.Management.ItemCellsCreators;
+using SWGame.Management.Repositories;
+using SWGame.View.Scenes;
+using SWGame.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace SWGame.GlobalConfigurations
 {
@@ -43,7 +42,7 @@ namespace SWGame.GlobalConfigurations
 
         private void Awake()
         {
-            if(_instance == null)
+            if (_instance == null)
             {
                 _instance = this;
             }
@@ -60,7 +59,7 @@ namespace SWGame.GlobalConfigurations
             if (_hubConnection == null)
             {
                 _hubConnection = new HubConnectionBuilder()
-                    .WithUrl(_url)                  
+                    .WithUrl(_url)
                     .Build();
                 _hubConnection.ServerTimeout = TimeSpan.FromMinutes(5);
                 _hubConnection.Closed += async (error) =>
@@ -84,7 +83,7 @@ namespace SWGame.GlobalConfigurations
         private async void Connect()
         {
             _hubConnection.On<string>("ReceiveRegistrationResult", (response) =>
-            {                               
+            {
                 _registrationScene.ProcessRegistrationResult(response);
             });
             _hubConnection.On<string>("ReceiveAuthorizationResult", (response) =>
@@ -145,7 +144,7 @@ namespace SWGame.GlobalConfigurations
                     IItemCellsCreator<ShopSlot> creator = new ShopSlotsCreator();
                     _mainScene.SetGoodsToCurrentShop(creator.ProcessCellsData(slots));
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     Debug.LogException(ex);
                 }
@@ -377,7 +376,7 @@ namespace SWGame.GlobalConfigurations
                 {
                     DisplayErrorMessage("Ошибка подключения. Сервер не отвечает на запрос.");
                 }));
-            }   
+            }
         }
 
         public async Task GetPlayersNeighbours(int locationId)
@@ -666,7 +665,7 @@ namespace SWGame.GlobalConfigurations
                 }));
             }
         }
-        
+
         public async Task SendMoveFinishing()
         {
             try

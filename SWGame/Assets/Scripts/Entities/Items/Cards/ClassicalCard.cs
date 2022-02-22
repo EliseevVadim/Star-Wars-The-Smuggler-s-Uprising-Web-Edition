@@ -1,13 +1,10 @@
-﻿using SWGame.Management.Repositories;
+﻿using Newtonsoft.Json;
+using SWGame.Activities.PazaakTools;
+using SWGame.Management.Repositories;
+using SWGame.View.Scenes;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
-using Newtonsoft.Json;
-using SWGame.Activities.PazaakTools;
-using SWGame.View.Scenes;
 
 namespace SWGame.Entities.Items.Cards
 {

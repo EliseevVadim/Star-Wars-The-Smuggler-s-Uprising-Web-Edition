@@ -1,8 +1,8 @@
-﻿using SWGame.Core.Models;
+﻿using MySql.Data.MySqlClient;
 using SWGame.Core.Management;
+using SWGame.Core.Models;
 using System;
 using System.Collections.Generic;
-using MySql.Data.MySqlClient;
 
 namespace SWGame.Core.Repositories
 {
@@ -15,7 +15,7 @@ namespace SWGame.Core.Repositories
 
         public Chat LoadById(int id)
         {
-            Chat chat = new Chat(id);            
+            Chat chat = new Chat(id);
             using (MySqlConnection connection = new MySqlConnection(DatabaseInformation.ConnectionString))
             {
                 connection.Open();

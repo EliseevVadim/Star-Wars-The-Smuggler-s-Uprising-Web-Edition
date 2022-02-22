@@ -1,10 +1,6 @@
 ﻿using SWGame.Entities.Items.Cards;
 using SWGame.GlobalConfigurations;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SWGame.Management.Repositories
 {

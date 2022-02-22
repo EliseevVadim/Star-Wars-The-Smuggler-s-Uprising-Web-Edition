@@ -1,14 +1,8 @@
 ﻿using SWGame.Entities.Items;
-using SWGame.GlobalConfigurations;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SWGame.Entities
 {
-    public class InventoryCell 
+    public class InventoryCell
     {
         private int _count;
         private Item _content;

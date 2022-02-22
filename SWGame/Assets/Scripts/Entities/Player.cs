@@ -1,12 +1,10 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using SWGame.Management.Repositories;
 using Newtonsoft.Json;
-using SWGame.GlobalConfigurations;
 using SWGame.Entities.Items;
 using SWGame.Entities.Items.Cards;
+using SWGame.GlobalConfigurations;
+using SWGame.Management.Repositories;
+using System;
+using UnityEngine;
 
 namespace SWGame.Entities
 {
@@ -67,7 +65,7 @@ namespace SWGame.Entities
         [JsonIgnore]
         public Sprite Avatar { get => _avatar; set => _avatar = value; }
 
-        public long Credits 
+        public long Credits
         {
             get => _credits;
             set
@@ -78,9 +76,9 @@ namespace SWGame.Entities
             }
         }
 
-        public int Prestige 
-        { 
-            get => _prestige; 
+        public int Prestige
+        {
+            get => _prestige;
             set
             {
                 _prestige = value;
@@ -88,9 +86,9 @@ namespace SWGame.Entities
                 UpdateSideView();
             }
         }
-        public int WisdomPoints 
-        { 
-            get => _wisdomPoints; 
+        public int WisdomPoints
+        {
+            get => _wisdomPoints;
             set
             {
                 _wisdomPoints = value;
@@ -99,7 +97,7 @@ namespace SWGame.Entities
             }
         }
         public int AvatarIndex { get => _avatarIndex; set => _avatarIndex = value; }
-        public int LocationId 
+        public int LocationId
         {
             get => _locationId;
             set
@@ -109,18 +107,18 @@ namespace SWGame.Entities
                 UpdateLocation(oldLocationId);
             }
         }
-        public bool StoryFinished 
-        { 
-            get => _storyFinished; 
+        public bool StoryFinished
+        {
+            get => _storyFinished;
             set
             {
                 _storyFinished = value;
                 UpdateStoryFinishing();
             }
         }
-        public bool NeedToShowTutorial 
-        { 
-            get => _needToShowTutorial; 
+        public bool NeedToShowTutorial
+        {
+            get => _needToShowTutorial;
             set
             {
                 _needToShowTutorial = value;

@@ -1,8 +1,7 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using SWGame.Core.Management;
 using SWGame.Core.Models;
 using System.Collections.Generic;
-using MySql.Data.MySqlClient;
-using SWGame.Core.Management;
 
 namespace SWGame.Core.Repositories
 {
@@ -22,7 +21,7 @@ namespace SWGame.Core.Repositories
                     planets.Add(new Planet
                     {
                         Id = (int)reader[0],
-                        Name = (string)reader[1],   
+                        Name = (string)reader[1],
                         Description = (string)reader[2],
                         TravellCost = (int)reader[3],
                         Treasury = (long)reader[4],

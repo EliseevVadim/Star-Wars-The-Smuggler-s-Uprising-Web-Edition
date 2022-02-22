@@ -1,13 +1,11 @@
 using SWGame.Entities;
-using System.Collections;
-using System.Collections.Generic;
+using SWGame.Management;
+using SWGame.Management.Repositories;
+using SWGame.View.Scenes;
 using UnityEngine;
 using UnityEngine.UI;
-using SWGame.Management.Repositories;
-using SWGame.Management;
-using SWGame.View.Scenes;
 
-namespace SWGame.View.ActionsHandlers.PlanetEvents 
+namespace SWGame.View.ActionsHandlers.PlanetEvents
 {
     public class HuttaEvents : MonoBehaviour
     {

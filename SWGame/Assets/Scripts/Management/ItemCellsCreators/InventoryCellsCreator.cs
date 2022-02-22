@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Newtonsoft.Json;
 using SWGame.Entities;
 using SWGame.Entities.Items;
 using SWGame.Entities.Items.Cards;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
-using Newtonsoft.Json;
 
 namespace SWGame.Management.ItemCellsCreators
 {
@@ -45,7 +42,7 @@ namespace SWGame.Management.ItemCellsCreators
                 {
                     cells.Add(new InventoryCell(count, addition, inventoryId));
                 }
-                catch(NullReferenceException)
+                catch (NullReferenceException)
                 {
                     Debug.Log("пусто");
                 }

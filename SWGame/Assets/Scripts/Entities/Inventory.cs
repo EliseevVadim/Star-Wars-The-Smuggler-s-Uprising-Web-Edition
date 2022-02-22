@@ -1,11 +1,8 @@
-﻿using System;
+﻿using SWGame.Entities.Items;
+using SWGame.GlobalConfigurations;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using SWGame.GlobalConfigurations;
-using Newtonsoft.Json;
-using SWGame.Entities.Items;
 
 namespace SWGame.Entities
 {

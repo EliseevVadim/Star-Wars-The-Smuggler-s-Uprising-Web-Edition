@@ -1,10 +1,8 @@
 using SWGame.Entities;
+using SWGame.GlobalConfigurations;
 using SWGame.Management;
 using SWGame.Management.Repositories;
 using SWGame.View.Scenes;
-using SWGame.GlobalConfigurations;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 

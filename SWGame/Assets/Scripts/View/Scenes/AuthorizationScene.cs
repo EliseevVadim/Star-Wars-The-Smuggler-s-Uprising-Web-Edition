@@ -1,13 +1,11 @@
-using SWGame.Management;
+using Newtonsoft.Json;
+using SWGame.Entities;
 using SWGame.GlobalConfigurations;
+using SWGame.Management;
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using System.Threading.Tasks;
-using SWGame.Entities;
-using System.Collections.Generic;
-using Newtonsoft.Json;
 
 namespace SWGame.View.Scenes
 {
@@ -33,7 +31,7 @@ namespace SWGame.View.Scenes
             _passwordField.text = "erudit316";
             _messagesDispatcher = GetComponent<MessagesDispatcher>();
             _clientManager = FindObjectOfType<ClientManager>().GetComponent<ClientManager>();
-            _clientManager.AuthorizationScene = this;           
+            _clientManager.AuthorizationScene = this;
         }
 
         public void ReturnToMenu()
@@ -52,7 +50,7 @@ namespace SWGame.View.Scenes
             }
             _passwordField.ForceLabelUpdate();
         }
-        
+
         public async void CheckUserExistance()
         {
             string name = _nicknameField.text;

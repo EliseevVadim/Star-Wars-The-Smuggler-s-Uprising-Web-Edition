@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SWGame.Management.Repositories;
+using SWGame.ViewModels;
 using UnityEngine;
 using UnityEngine.UI;
-using SWGame.ViewModels;
-using SWGame.Management.Repositories;
 
 namespace SWGame.View.Presenters
 {

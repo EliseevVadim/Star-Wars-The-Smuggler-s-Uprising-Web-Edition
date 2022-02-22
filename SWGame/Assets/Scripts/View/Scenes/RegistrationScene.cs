@@ -1,13 +1,13 @@
+using SWGame.Entities;
+using SWGame.Exceptions.ValidationExceptions;
+using SWGame.GlobalConfigurations;
+using SWGame.Management;
+using SWGame.Management.Validators;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using SWGame.Management.Validators;
-using SWGame.Exceptions.ValidationExceptions;
-using SWGame.Entities;
-using SWGame.GlobalConfigurations;
-using SWGame.Management;
 
 namespace SWGame.View.Scenes
 {
@@ -44,7 +44,7 @@ namespace SWGame.View.Scenes
         private bool _passwordConfirmed => _passwordField.text == _confirmPasswordField.text;
 
         private const int StartCredits = 5000;
-        
+
 
         public void Start()
         {
@@ -151,10 +151,10 @@ namespace SWGame.View.Scenes
                 _validator = new LoginValidator(_login);
                 _validator.Validate();
                 _validator = new PasswordValidator(_password, _passwordConfirmed);
-                _validator.Validate();             
+                _validator.Validate();
                 TextEncryptor encryptor = new TextEncryptor(_password);
                 Player player = new Player(0, _nickName, _login, encryptor.GetSha1EncryptedLine(), StartCredits, 0, 0, 1, _index, false, true, DateTime.Now);
-                await _clientManager.RegisterPlayerAsync(player);                
+                await _clientManager.RegisterPlayerAsync(player);
             }
             catch (WrongLoginException exception)
             {
@@ -187,7 +187,7 @@ namespace SWGame.View.Scenes
                     _errorMessage.SetActive(true);
                 }));
             }
-        } 
+        }
         public void FinishRegistration()
         {
             _successMessage.SetActive(false);

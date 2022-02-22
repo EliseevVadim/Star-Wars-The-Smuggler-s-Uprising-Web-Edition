@@ -1,7 +1,7 @@
-﻿using SWGame.Core.Models.Items.Cards;
-using System.Collections.Generic;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using SWGame.Core.Models.Items.Cards;
 using System;
+using System.Collections.Generic;
 
 namespace SWGame.Core.Services
 {

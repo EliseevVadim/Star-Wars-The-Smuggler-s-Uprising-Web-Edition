@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using SWGame.Activities.PazaakTools.OnlinePazaak;
 using SWGame.Entities;
-using SWGame.Management;
+using SWGame.Entities.Items.Cards;
 using SWGame.GlobalConfigurations;
+using SWGame.Management;
 using SWGame.Management.Repositories;
 using SWGame.View.Presenters;
-using Newtonsoft.Json;
 using SWGame.ViewModels;
-using SWGame.Activities.PazaakTools.OnlinePazaak;
-using SWGame.Entities.Items.Cards;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+using UnityEngine.UI;
 
 namespace SWGame.View.Scenes
 {

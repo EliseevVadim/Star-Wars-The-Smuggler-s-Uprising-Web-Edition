@@ -1,7 +1,5 @@
 using SWGame.Entities;
 using SWGame.Management;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace SWGame.View.Presenters

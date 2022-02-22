@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SWGame.Entities;
-using SWGame.Management;
+﻿using SWGame.Entities;
 using UnityEngine;
 
 namespace SWGame.View.Presenters
@@ -13,7 +7,7 @@ namespace SWGame.View.Presenters
     {
         [SerializeField] private Transform _container;
         [SerializeField] private MessagePresenter _messageTemplate;
-        
+
         public void Render(Chat chat)
         {
             foreach (Transform message in _container)

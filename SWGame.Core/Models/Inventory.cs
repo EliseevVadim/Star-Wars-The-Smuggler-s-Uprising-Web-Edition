@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using MySql.Data.MySqlClient;
+﻿using MySql.Data.MySqlClient;
 using SWGame.Core.Enums;
 using SWGame.Core.Management;
 using SWGame.Core.Models.Items;
 using SWGame.Core.Models.Items.Cards;
+using System;
+using System.Collections.Generic;
 
 namespace SWGame.Core.Models
 {

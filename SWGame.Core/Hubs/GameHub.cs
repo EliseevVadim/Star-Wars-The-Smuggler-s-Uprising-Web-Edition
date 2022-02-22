@@ -1,17 +1,17 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.SignalR;
+using Newtonsoft.Json;
+using SWGame.Core.Exceptions;
+using SWGame.Core.Management;
+using SWGame.Core.Models;
+using SWGame.Core.Models.Items;
+using SWGame.Core.Models.Items.Cards;
+using SWGame.Core.Repositories;
+using SWGame.Core.Services;
+using SWGame.Core.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.SignalR;
-using SWGame.Core.Models;
-using Newtonsoft.Json;
-using SWGame.Core.Repositories;
-using SWGame.Core.Management;
-using SWGame.Core.ViewModels;
-using SWGame.Core.Models.Items.Cards;
-using SWGame.Core.Models.Items;
-using SWGame.Core.Exceptions;
-using SWGame.Core.Services;
 
 namespace SWGame.Core.Hubs
 {
@@ -20,7 +20,7 @@ namespace SWGame.Core.Hubs
         private readonly LocationsRepository _locationsRepository;
         private Dictionary<int, string> _locationsNames;
         private string _viewersGroupName = "ChallengesViewers";
-        
+
         public GameHub(LocationsRepository locationsRepository)
         {
             _locationsRepository = locationsRepository;
@@ -227,14 +227,14 @@ namespace SWGame.Core.Hubs
             List<FlippableCard> flippableCards = repository.LoadFlippableCards();
             List<GoldCard> goldCards = repository.LoadGoldCards();
             await Clients.Caller.SendAsync("ProcessPazaakCards", systemCards, classicalCards, flippableCards, goldCards);
-        } 
+        }
 
         public async Task LoadItems()
         {
             ItemsRepository repository = new ItemsRepository();
             List<LootItem> lootItems = repository.LoadLootItems();
             List<QuestItem> questItems = repository.LoadQuestItems();
-            await Clients.Caller.SendAsync("ProcessRequestedItems", lootItems, questItems);       
+            await Clients.Caller.SendAsync("ProcessRequestedItems", lootItems, questItems);
         }
 
         public async Task LoadChat(int locationId)
@@ -262,7 +262,7 @@ namespace SWGame.Core.Hubs
                 ActivePazaakChallenges.AddChallenge(creator, amount, Context.ConnectionId);
                 await Clients.Group(_viewersGroupName).SendAsync("RedrawChallengesPanel", ActivePazaakChallenges.PazaakChallenges);
             }
-            catch(ChallengeAlreadyExistException)
+            catch (ChallengeAlreadyExistException)
             {
                 await Clients.Caller.SendAsync("DisplayChallengeCreationError");
             }

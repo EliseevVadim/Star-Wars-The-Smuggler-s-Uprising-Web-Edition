@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using SWGame.Core.Models;
+﻿using System.Collections.Generic;
 
 namespace SWGame.Core.Repositories
 {

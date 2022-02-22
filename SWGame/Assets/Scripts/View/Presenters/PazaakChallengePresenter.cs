@@ -1,7 +1,6 @@
 ﻿using SWGame.Activities.PazaakTools.OnlinePazaak;
 using SWGame.GlobalConfigurations;
 using SWGame.Management;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -39,7 +38,7 @@ namespace SWGame.View.Presenters
                 PrepareErrorPanel("Не хватает карт для игры в Пазаак.");
                 return;
             }
-            if(CurrentPlayer.Player.Credits < _challenge.Amount)
+            if (CurrentPlayer.Player.Credits < _challenge.Amount)
             {
                 PrepareErrorPanel("Не хватает кредитов.");
                 return;

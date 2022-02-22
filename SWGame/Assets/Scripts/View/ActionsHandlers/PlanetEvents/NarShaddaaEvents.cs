@@ -1,9 +1,9 @@
 using SWGame.Entities;
-using SWGame.Management.Repositories;
 using SWGame.Management;
+using SWGame.Management.Repositories;
+using SWGame.View.Scenes;
 using UnityEngine;
 using UnityEngine.UI;
-using SWGame.View.Scenes;
 
 namespace SWGame.View.ActionsHandlers.PlanetEvents
 {
