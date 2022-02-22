@@ -15,6 +15,7 @@ namespace SWGame.View.Presenters
         [SerializeField] private GameObject _tutorial;
         [SerializeField] private Toggle _hideForever;
         [SerializeField] private Text _infoField;
+        [SerializeField] private Scrollbar _scrollbar;
 
         private Player _currentPlayer = CurrentPlayer.Player;
 
@@ -29,6 +30,7 @@ namespace SWGame.View.Presenters
         public void ExpandRecord(Button sender)
         {
             _infoField.text = TutorialDataHandler.TutorialChapters[int.Parse(sender.name)];
+            _scrollbar.value = 1;
         }
     }
 }
