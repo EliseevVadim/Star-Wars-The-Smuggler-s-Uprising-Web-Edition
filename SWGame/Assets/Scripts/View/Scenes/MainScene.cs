@@ -276,5 +276,10 @@ namespace SWGame.View.Scenes
         {
             _onlinePazaak.ProcessOpponentDisconnection();
         }
+
+        public void ExitGame()
+        {
+            Application.Quit();
+        }
     }
 }

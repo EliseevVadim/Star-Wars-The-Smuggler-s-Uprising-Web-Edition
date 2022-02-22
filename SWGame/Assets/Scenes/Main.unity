@@ -66817,8 +66817,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MainScene, Assembly-CSharp
+      - m_Target: {fileID: 306816706}
+        m_TargetAssemblyTypeName: SWGame.View.Scenes.MainScene, Assembly-CSharp
         m_MethodName: ExitGame
         m_Mode: 1
         m_Arguments:
