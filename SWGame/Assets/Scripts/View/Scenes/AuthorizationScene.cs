@@ -79,7 +79,6 @@ namespace SWGame.View.Scenes
                 _messagesDispatcher.AddMessage(new Action(() =>
                 {
                     CurrentPlayer.Player = JsonConvert.DeserializeObject<Player>(response);
-                    Debug.Log(CurrentPlayer.Player.LogoutDateTime);
                     _successMessage.SetActive(true);
                 }));
             }

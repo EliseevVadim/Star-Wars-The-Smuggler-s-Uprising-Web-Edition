@@ -279,6 +279,7 @@ namespace SWGame.View.Scenes
 
         public void ExitGame()
         {
+            _clientManager.StopConnection();
             Application.Quit();
         }
     }

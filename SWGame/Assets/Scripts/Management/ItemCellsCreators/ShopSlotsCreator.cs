@@ -44,7 +44,6 @@ namespace SWGame.Management.ItemCellsCreators
                 }
                 catch (NullReferenceException)
                 {
-                    Debug.Log("пусто");
                 }
             });
             return slots;

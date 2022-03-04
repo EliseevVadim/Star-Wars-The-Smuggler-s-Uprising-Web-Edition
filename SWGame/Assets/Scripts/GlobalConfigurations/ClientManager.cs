@@ -73,8 +73,6 @@ namespace SWGame.GlobalConfigurations
                         " и перезапустите приложение.";
                         _messagesDispatcher.ConnectionErrorMessage.SetActive(true);
                     }));
-
-                    await _hubConnection.StartAsync();
                 };
                 Connect();
             }
@@ -715,6 +713,11 @@ namespace SWGame.GlobalConfigurations
         {
             _messagesDispatcher.ConnectionErrorText.text = message;
             _messagesDispatcher.ConnectionErrorMessage.SetActive(true);
+        }
+
+        public async void StopConnection()
+        {
+            await _hubConnection.StopAsync();
         }
     }
 }
