@@ -35,6 +35,7 @@ namespace SWGame.View.Scenes
         [SerializeField] private GameObject _errorMessage;
         [SerializeField] private Text _errorText;
         [SerializeField] private GameObject _onlinePazaakGame;
+        [SerializeField] private GameObject _loadingScreen;
 
         private Player _currentPlayer;
         private ClientManager _clientManager;
@@ -65,6 +66,7 @@ namespace SWGame.View.Scenes
 
         private async void Start()
         {
+            _loadingScreen.SetActive(true);
             _planetsRepository = new PlanetsRepository(_clientManager);
             _locationsRepository = new LocationsRepository(_clientManager);
             _currentPlayer = CurrentPlayer.Player;
@@ -86,6 +88,7 @@ namespace SWGame.View.Scenes
             _currentPlayer.Planet.View.SetActive(true);
             _currentPlayer.Location.View.SetActive(true);
             presenter.UpdateView(_currentPlayer);
+            _loadingScreen.SetActive(false);
             if (_currentPlayer.LogoutDateTime < DateTime.Today)
             {
                 _currentPlayer.Credits += DailyReward;

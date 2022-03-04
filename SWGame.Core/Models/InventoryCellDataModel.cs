@@ -16,7 +16,7 @@ namespace SWGame.Core.Models
             using (MySqlConnection connection = new MySqlConnection(DatabaseInformation.ConnectionString))
             {
                 connection.Open();
-                string query = string.Format("INSERT INTO InventoryCell (InventoryId, ItemId, Count) VALUES (@invId, @itemId, @count)");
+                string query = string.Format("INSERT INTO inventorycell (InventoryId, ItemId, Count) VALUES (@invId, @itemId, @count)");
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@invId", Id);
                 command.Parameters.AddWithValue("@itemId", ItemId);
@@ -30,7 +30,7 @@ namespace SWGame.Core.Models
             using (MySqlConnection connection = new MySqlConnection(DatabaseInformation.ConnectionString))
             {
                 connection.Open();
-                string query = string.Format("UPDATE InventoryCell SET " +
+                string query = string.Format("UPDATE inventorycell SET " +
                     "Count = @count " +
                     "WHERE InventoryId = @invId " +
                     "AND ItemId = @itemId");

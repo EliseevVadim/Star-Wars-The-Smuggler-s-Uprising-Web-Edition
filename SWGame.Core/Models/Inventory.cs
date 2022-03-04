@@ -35,7 +35,7 @@ namespace SWGame.Core.Models
             using (MySqlConnection connection = new MySqlConnection(DatabaseInformation.ConnectionString))
             {
                 connection.Open();
-                string query = string.Format(@"SELECT item.id, item.Name, item.Description, lootitem.PrestigeValue, lootitem.WisdomValue, lootitem.ImageIndex, inventoryCell.Count, item.SalePrice, lootitem.FactionId
+                string query = string.Format(@"SELECT item.id, item.Name, item.Description, lootitem.PrestigeValue, lootitem.WisdomValue, lootitem.ImageIndex, inventorycell.Count, item.SalePrice, lootitem.FactionId
                 FROM item INNER JOIN lootitem ON item.id = lootitem.ItemId
                 INNER JOIN inventorycell on item.id = inventorycell.ItemId
                 WHERE inventorycell.InventoryId = @invId");
@@ -63,7 +63,7 @@ namespace SWGame.Core.Models
             using (MySqlConnection connection = new MySqlConnection(DatabaseInformation.ConnectionString))
             {
                 connection.Open();
-                string query = string.Format(@"SELECT item.id, item.Name, item.Description, questitem.ImageIndex, item.SalePrice, inventoryCell.count
+                string query = string.Format(@"SELECT item.id, item.Name, item.Description, questitem.ImageIndex, item.SalePrice, inventorycell.count
                 FROM item INNER JOIN questitem ON item.id = questitem.ItemId
                 INNER JOIN inventorycell ON inventorycell.ItemId = item.id
                 WHERE inventorycell.InventoryId = @invId");

@@ -68,17 +68,18 @@ namespace SWGame.Core.Models
                 try
                 {
                     connection.Open();
-                    string query = string.Format("INSERT INTO Player (Nickname, Login, Password, AvatarIndex, LocationId, Credits) " +
-                        "VALUES (@name, @login, @password, @avatarIndex, 1, @credits)");
+                    string query = string.Format("INSERT INTO player (Nickname, Login, Password, AvatarIndex, LocationId, Credits, LogoutDateTime) " +
+                        "VALUES (@name, @login, @password, @avatarIndex, 1, @credits, @logout)");
                     MySqlCommand command = new MySqlCommand(query, connection);
                     command.Parameters.AddWithValue("@name", _nickname);
                     command.Parameters.AddWithValue("@login", _login);
                     command.Parameters.AddWithValue("@password", _password);
                     command.Parameters.AddWithValue("@avatarIndex", _avatarIndex);
                     command.Parameters.AddWithValue("@credits", _credits);
+                    command.Parameters.AddWithValue("@logout", DateTime.Now);
                     await command.ExecuteNonQueryAsync();
                     int id = (int)command.LastInsertedId;
-                    query = string.Format("INSERT INTO Inventory (PlayersId) VALUES (@id)");
+                    query = string.Format("INSERT INTO inventory (PlayersId) VALUES (@id)");
                     command.CommandText = query;
                     command.Parameters.AddWithValue("@id", id);
                     await command.ExecuteNonQueryAsync();
@@ -95,7 +96,7 @@ namespace SWGame.Core.Models
             using (MySqlConnection connection = new MySqlConnection(DatabaseInformation.ConnectionString))
             {
                 connection.Open();
-                string query = string.Format(@"UPDATE Player SET LocationId = @locationId WHERE id = @id");
+                string query = string.Format(@"UPDATE player SET LocationId = @locationId WHERE id = @id");
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@id", _id);
                 command.Parameters.AddWithValue("@locationId", _locationId);
@@ -108,7 +109,7 @@ namespace SWGame.Core.Models
             using (MySqlConnection connection = new MySqlConnection(DatabaseInformation.ConnectionString))
             {
                 connection.Open();
-                string query = string.Format(@"UPDATE Player SET Credits = @credits WHERE id = @id");
+                string query = string.Format(@"UPDATE player SET Credits = @credits WHERE id = @id");
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@id", _id);
                 command.Parameters.AddWithValue("@credits", _credits);
@@ -121,7 +122,7 @@ namespace SWGame.Core.Models
             using (MySqlConnection connection = new MySqlConnection(DatabaseInformation.ConnectionString))
             {
                 connection.Open();
-                string query = string.Format(@"UPDATE Player SET ShowTutorial = @needToShow WHERE id = @id");
+                string query = string.Format(@"UPDATE player SET ShowTutorial = @needToShow WHERE id = @id");
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@id", _id);
                 command.Parameters.AddWithValue("@needToShow", _needToShowTutorial);
@@ -134,7 +135,7 @@ namespace SWGame.Core.Models
             using (MySqlConnection connection = new MySqlConnection(DatabaseInformation.ConnectionString))
             {
                 connection.Open();
-                string query = string.Format(@"UPDATE Player SET StoryFinished = @storyFinished WHERE id = @id");
+                string query = string.Format(@"UPDATE player SET StoryFinished = @storyFinished WHERE id = @id");
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@id", _id);
                 command.Parameters.AddWithValue("@storyFinished", _storyFinished);
@@ -147,7 +148,7 @@ namespace SWGame.Core.Models
             using (MySqlConnection connection = new MySqlConnection(DatabaseInformation.ConnectionString))
             {
                 connection.Open();
-                string query = string.Format(@"UPDATE Player SET Prestige = @prestige WHERE id = @id");
+                string query = string.Format(@"UPDATE player SET Prestige = @prestige WHERE id = @id");
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@id", _id);
                 command.Parameters.AddWithValue("@prestige", _prestige);
@@ -160,7 +161,7 @@ namespace SWGame.Core.Models
             using (MySqlConnection connection = new MySqlConnection(DatabaseInformation.ConnectionString))
             {
                 connection.Open();
-                string query = string.Format(@"UPDATE Player SET WisdomPoints = @wisdom WHERE id = @id");
+                string query = string.Format(@"UPDATE player SET WisdomPoints = @wisdom WHERE id = @id");
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@id", _id);
                 command.Parameters.AddWithValue("@wisdom", _wisdomPoints);
@@ -173,7 +174,7 @@ namespace SWGame.Core.Models
             using (MySqlConnection connection = new MySqlConnection(DatabaseInformation.ConnectionString))
             {
                 connection.Open();
-                string query = string.Format(@"UPDATE Player SET LogoutDateTime = @date WHERE id = @id");
+                string query = string.Format(@"UPDATE player SET LogoutDateTime = @date WHERE id = @id");
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@id", _id);
                 command.Parameters.AddWithValue("@date", DateTime.Now);

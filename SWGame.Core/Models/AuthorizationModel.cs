@@ -26,7 +26,7 @@ namespace SWGame.Core.Models
             using (MySqlConnection connection = new MySqlConnection(DatabaseInformation.ConnectionString))
             {
                 connection.Open();
-                string query = string.Format("SELECT id, Nickname, Login, Password, Credits, Prestige, WisdomPoints, LocationId, AvatarIndex, StoryFinished, LogoutDateTime, ShowTutorial FROM Player " +
+                string query = string.Format("SELECT id, Nickname, Login, Password, Credits, Prestige, WisdomPoints, LocationId, AvatarIndex, StoryFinished, LogoutDateTime, ShowTutorial FROM player " +
                     "WHERE Nickname = @name " +
                     "AND Login = @login " +
                     "AND Password = @password");

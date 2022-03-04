@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAALhFghqQ4UEaIA/PfPiFGogAAAAACAAAAAAAQZgAAAAEAACAAAAD1z0peVcN4DRm9b5FzlEwvRv5MgjaEorSWL2NlURrDRgAAAAAOgAAAAAIAACAAAAA49tydW2i/ES72lTwEMLF8guT1qGvxVAuqqFpk20T0AyAAAAAWSkoWwmg87CholuxyqSFkZODaZPxhDjXHP3rf8EpU2kAAAACvbs4ufV4Vo2ACRSwPDhgLH4NVn8Q8Jb6mTWi7Be+KyZoGtdWLYS7aQC4yc9s3u9QXNptn/auTyra639wGPAoh</EncryptedPassword>
+    <_PublishTargetUrl>ftp://SWGameServer.somee.com/www.SWGameServer.somee.com/www.SWGameServer.somee.com</_PublishTargetUrl>
+    <History>False|2022-03-03T12:12:17.8763263Z;False|2022-03-03T15:04:11.2060404+03:00;</History>
+  </PropertyGroup>
+</Project>

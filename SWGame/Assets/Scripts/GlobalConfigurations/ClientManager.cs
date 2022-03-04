@@ -22,7 +22,7 @@ namespace SWGame.GlobalConfigurations
     {
         private static ClientManager _instance;
 
-        private string _url = "https://localhost:44376/sw";
+        private string _url = "https://swgamecore.azurewebsites.net/sw";
         private static HubConnection _hubConnection;
 
         private RegistrationScene _registrationScene;

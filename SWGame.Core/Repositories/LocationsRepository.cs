@@ -13,7 +13,7 @@ namespace SWGame.Core.Repositories
             using (MySqlConnection connection = new MySqlConnection(DatabaseInformation.ConnectionString))
             {
                 connection.Open();
-                string query = "SELECT id, Name, PlanetId FROM Location";
+                string query = "SELECT id, Name, PlanetId FROM location";
                 MySqlCommand command = new MySqlCommand(query, connection);
                 MySqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
@@ -35,7 +35,7 @@ namespace SWGame.Core.Repositories
             using (MySqlConnection connection = new MySqlConnection(DatabaseInformation.ConnectionString))
             {
                 connection.Open();
-                string query = string.Format(@"SELECT id, Name, PlanetId FROM Location WHERE id = @id");
+                string query = string.Format(@"SELECT id, Name, PlanetId FROM location WHERE id = @id");
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@id", id);
                 MySqlDataReader reader = command.ExecuteReader();
@@ -57,7 +57,7 @@ namespace SWGame.Core.Repositories
             using (MySqlConnection connection = new MySqlConnection(DatabaseInformation.ConnectionString))
             {
                 connection.Open();
-                string query = "SELECT id, Name FROM Location";
+                string query = "SELECT id, Name FROM location";
                 MySqlCommand command = new MySqlCommand(query, connection);
                 MySqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())

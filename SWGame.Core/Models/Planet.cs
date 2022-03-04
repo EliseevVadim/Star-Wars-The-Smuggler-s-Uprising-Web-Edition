@@ -13,16 +13,6 @@ namespace SWGame.Core.Models
         private int _travellCost;
         private int _iconIndex;
 
-        //public Planet(int id, string name, string description, int treasury, int travelCost, int iconIndex)
-        //{
-        //    _id = id;
-        //    _name = name;
-        //    _description = description;
-        //    _treasury = treasury;
-        //    _travelCost = travelCost;
-        //    _iconIndex = iconIndex;
-        //}
-
         public int Id { get => _id; set => _id = value; }
         public string Name { get => _name; set => _name = value; }
         public string Description { get => _description; set => _description = value; }
@@ -35,7 +25,7 @@ namespace SWGame.Core.Models
             using (MySqlConnection connection = new MySqlConnection(DatabaseInformation.ConnectionString))
             {
                 connection.Open();
-                string query = string.Format(@"UPDATE Planet SET Treasury = @treasury WHERE id = @id");
+                string query = string.Format(@"UPDATE planet SET Treasury = @treasury WHERE id = @id");
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@id", _id);
                 command.Parameters.AddWithValue("@treasury", _treasury);
