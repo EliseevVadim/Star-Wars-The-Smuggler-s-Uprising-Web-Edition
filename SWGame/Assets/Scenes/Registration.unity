@@ -3058,6 +3058,12 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d95224443e1b8304e8ca16474d791ff7, type: 3}
   - {fileID: 21300000, guid: 267e53c326cfa394aaaa0f507b68623d, type: 3}
   - {fileID: 21300000, guid: b027bf80e8523e142ad47ff0346cee58, type: 3}
+  - {fileID: 21300000, guid: 844efb312b06a4d47a452a7718fbdd9d, type: 3}
+  - {fileID: 21300000, guid: 0fee4ac4004624a4aa6b9a515258da31, type: 3}
+  - {fileID: 21300000, guid: 04800b0c337997a44909c17abffaccbc, type: 3}
+  - {fileID: 21300000, guid: 56085d29a2265b14ab9a89c27f21bb07, type: 3}
+  - {fileID: 21300000, guid: b70b27ee7d3dd32498beea8a12e85336, type: 3}
+  - {fileID: 21300000, guid: 5cbb2fd5455b59a45a41e0c2e2e73d16, type: 3}
   _faceBox: {fileID: 737498767}
   _nickNameField: {fileID: 1070728416}
   _errorMessage: {fileID: 1762500131}
