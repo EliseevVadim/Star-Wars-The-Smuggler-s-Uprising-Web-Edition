@@ -272,7 +272,7 @@ namespace SWGame.Activities.PazaakTools.OnlinePazaak
         {
             _messagesDispatcher.AddMessage(new Action(() =>
             {
-                if (_opponentsDeck.CurrentIndex == 9 || _opponentsDeck.HasATiebreaker)
+                if ((_opponentsDeck.CurrentIndex == 9 || _opponentsDeck.HasATiebreaker) && _playersDeck.CurrentIndex != 9)
                 {
                     _resultText.text = "К сожалению, Вы проиграли.";
                     _opponentsScore++;
