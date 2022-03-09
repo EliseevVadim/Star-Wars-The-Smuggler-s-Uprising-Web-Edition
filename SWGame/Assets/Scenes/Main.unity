@@ -6852,6 +6852,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dropdown: {fileID: 1118282790}
+  _qualityDropdown: {fileID: 693340801}
   _fullscreenChanger: {fileID: 277893358}
 --- !u!1 &242607153
 GameObject:

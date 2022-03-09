@@ -10,6 +10,7 @@ namespace SWGame.Client.GlobalConfigurations
         private Resolution[] _resolutions;
         private List<string> _resolutionsNames;
         [SerializeField] private Dropdown _dropdown;
+        [SerializeField] private Dropdown _qualityDropdown;
         [SerializeField] private Toggle _fullscreenChanger;
 
         public void Start()
@@ -24,7 +25,9 @@ namespace SWGame.Client.GlobalConfigurations
             _dropdown.AddOptions(_resolutionsNames);
             try
             {
-                SetQuality(PlayerPrefs.GetInt("Quality"));
+                int qualityIndex = PlayerPrefs.GetInt("Quality");
+                _qualityDropdown.value = qualityIndex;
+                SetQuality(qualityIndex);
             }
             catch { }
             try
