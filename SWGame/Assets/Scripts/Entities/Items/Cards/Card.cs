@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace SWGame.Entities.Items.Cards
 {
-    public class Card : Item
+    public class Card : Item, ICloneable
     {
         protected int _value;
         protected string _valueInLine;
@@ -65,5 +65,7 @@ namespace SWGame.Entities.Items.Cards
         {
             _valueInLine = _value.ToString();
         }
+
+        public object Clone() => MemberwiseClone();
     }
 }

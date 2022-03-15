@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace SWGame.Entities.Items.Cards
 {
-    public class FlippableCard : Card
+    public class FlippableCard : Card, ICloneable
     {
         [JsonConstructor]
         public FlippableCard(int id, string name, int value) : base(id, name, value)
@@ -81,5 +81,7 @@ namespace SWGame.Entities.Items.Cards
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(_name);
             return hashCode;
         }
+
+        public new object Clone() => MemberwiseClone();
     }
 }

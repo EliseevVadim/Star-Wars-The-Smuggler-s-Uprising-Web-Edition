@@ -159,7 +159,18 @@ namespace SWGame.Activities.PazaakTools.OnlinePazaak
             for (int i = 0; i < _playersHand.Length; i++)
             {
                 int pos = UnityEngine.Random.Range(0, allPlayersCards.Count);
-                _playersHand[i] = allPlayersCards[pos];
+                Card addition = allPlayersCards[pos];
+                switch (allPlayersCards[pos].GetType().Name)
+                {
+                    case "FlippableCard":
+                        addition = new FlippableCard(allPlayersCards[pos].Id, allPlayersCards[pos].Name, allPlayersCards[pos].Value);
+                        break;
+                    case "GoldCard":
+                        GoldCard temp = addition as GoldCard;
+                        addition = new GoldCard(temp.Id, temp.Name, temp.Type, temp.Value, temp.Index);
+                        break;
+                }
+                _playersHand[i] = addition;
                 allPlayersCards.RemoveAt(pos);
             }
         }
