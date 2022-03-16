@@ -30,6 +30,8 @@ namespace SWGame.Activities.PazaakTools
         [SerializeField] private Text _endGameTitle;
         [SerializeField] private Text _endGameText;
         [SerializeField] private GameObject _pazaakView;
+        [SerializeField] private GameObject _playersDeckSignalPanel;
+        [SerializeField] private GameObject _opponentsDeckSignalPanel;
 
         private int _amount;
         private int _playersScore;
@@ -79,6 +81,8 @@ namespace SWGame.Activities.PazaakTools
             _canThrowHandCard = true;
             _playersScore = 0;
             _opponentsScore = 0;
+            _playersDeckSignalPanel.SetActive(false);
+            _opponentsDeckSignalPanel.SetActive(false);
         }
 
         private void Update()
@@ -205,7 +209,7 @@ namespace SWGame.Activities.PazaakTools
         {
             if (_playersDeck.Sum >= 20 || _playersDeck.CurrentIndex == 9)
             {
-                _playerStands = true;
+                ProcessPlayersStanding();
             }
             if (!_computerStands)
             {
@@ -224,9 +228,10 @@ namespace SWGame.Activities.PazaakTools
             }
             _canThrowHandCard = true;
         }
+
         public void StandByPlayer()
         {
-            _playerStands = true;
+            ProcessPlayersStanding();
             if (_playerStands && _computerStands)
             {
                 EvaluateResult();
@@ -245,7 +250,7 @@ namespace SWGame.Activities.PazaakTools
         {
             if (_opponentsDeck.Sum >= 20 || _opponentsDeck.CurrentIndex == 9)
             {
-                _computerStands = true;
+                ProcessComputerStanding();
             }
             if (!_playerStands)
             {
@@ -267,7 +272,7 @@ namespace SWGame.Activities.PazaakTools
             if ((_playerStands && _opponentsDeck.Sum > _playersDeck.Sum && _opponentsDeck.Sum <= 20)
                 || (_playerStands && _playersDeck.Sum > 20))
             {
-                _computerStands = true;
+                ProcessComputerStanding();
                 return;
             }
             Dictionary<int, int> possibleStatementsWithRespectiveCards = new Dictionary<int, int>();
@@ -333,7 +338,7 @@ namespace SWGame.Activities.PazaakTools
             {
                 if (_opponentsDeck.Sum >= 20 || _opponentsDeck.CurrentIndex == 9)
                 {
-                    _computerStands = true;
+                    ProcessComputerStanding();
                 }
             }
             finally
@@ -344,7 +349,7 @@ namespace SWGame.Activities.PazaakTools
             if (_opponentsDeck.Sum + MiddleValue + moreInfluentDecrement > 20 ||
                 _opponentsDeck.Sum > _playersDeck.Sum && _playerStands && _opponentsDeck.Sum <= 20)
             {
-                _computerStands = true;
+                ProcessComputerStanding();
             }
         }
         private int ClosestKeyToTwenty(int[] keys)
@@ -393,7 +398,7 @@ namespace SWGame.Activities.PazaakTools
             {
                 if (_playersDeck.Sum == 20 || _playersDeck.CurrentIndex == 9)
                 {
-                    _playerStands = true;
+                    ProcessPlayersStanding();
                     FinishPlayersMove();
                 }
             }
@@ -401,7 +406,7 @@ namespace SWGame.Activities.PazaakTools
             {
                 if (_opponentsDeck.Sum == 20 || _opponentsDeck.CurrentIndex == 9)
                 {
-                    _computerStands = true;
+                    ProcessComputerStanding();
                 }
             }
         }
@@ -486,6 +491,8 @@ namespace SWGame.Activities.PazaakTools
                 _playerStands = false;
                 _computerStands = false;
                 _canThrowHandCard = true;
+                _playersDeckSignalPanel.SetActive(false);
+                _opponentsDeckSignalPanel.SetActive(false);
                 _resultMessage.SetActive(false);
                 UpdateView();
             }
@@ -504,6 +511,8 @@ namespace SWGame.Activities.PazaakTools
                     _endGameText.text = $"К сожалению, Вы проиграли матч. Потеря в кредитах составляет: {_amount}";
                 }
                 UpdateView();
+                _playersDeckSignalPanel.SetActive(false);
+                _opponentsDeckSignalPanel.SetActive(false);
                 _resultMessage.SetActive(false);
                 _endGameMessage.SetActive(true);
             }
@@ -517,6 +526,18 @@ namespace SWGame.Activities.PazaakTools
             ClearGameStatement();
             _endGameMessage.SetActive(false);
             _pazaakView.SetActive(false);
+        }
+
+        private void ProcessPlayersStanding()
+        {
+            _playerStands = true;
+            _playersDeckSignalPanel.SetActive(true);
+        }
+
+        private void ProcessComputerStanding()
+        {
+            _computerStands = true;
+            _opponentsDeckSignalPanel.SetActive(true);
         }
     }
 }
