@@ -495,6 +495,13 @@ namespace SWGame.Activities.PazaakTools
                 _opponentsDeckSignalPanel.SetActive(false);
                 _resultMessage.SetActive(false);
                 UpdateView();
+                if (Random.Range(0, 2) == 1)
+                    AddSystemCard(_playersDeck);
+                else
+                {
+                    AddSystemCard(_opponentsDeck);
+                    FinishComputersMove();
+                }
             }
             else
             {
