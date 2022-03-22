@@ -127,6 +127,13 @@ namespace SWGame.Activities.PazaakTools.OnlinePazaak
             }
         }
 
+        private void OnDisable()
+        {
+            ClearGameStatement();
+            _resultMessage.SetActive(false);
+            _endGameMessage.SetActive(false);
+        }
+
         private void ClearGameStatement()
         {
             _selectedCard = null;
@@ -283,8 +290,9 @@ namespace SWGame.Activities.PazaakTools.OnlinePazaak
         {
             _messagesDispatcher.AddMessage(new Action(() =>
             {
-                if ((_opponentsDeck.CurrentIndex == 9 || _opponentsDeck.HasATiebreaker) && _playersDeck.CurrentIndex != 9 
-                    && !_playersDeck.HasATiebreaker && _opponentsDeck.Sum <= 20 && _opponentsDeck.Sum >= _playersDeck.Sum)
+                if ((_opponentsDeck.CurrentIndex == 9 || (_opponentsDeck.HasATiebreaker && _opponentsDeck.Sum >= _playersDeck.Sum && !_playersDeck.HasATiebreaker)) 
+                    && _playersDeck.CurrentIndex != 9 
+                    && (!_playersDeck.HasATiebreaker || _playersDeck.CurrentIndex != 9) && _opponentsDeck.Sum <= 20)
                 {
                     _resultText.text = "К сожалению, Вы проиграли.";
                     _opponentsScore++;
